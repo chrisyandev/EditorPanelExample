@@ -3,8 +3,8 @@
         xmlns:vm="using:EditorPanelExample.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:models="clr-namespace:EditorPanelExample.Models"
-		xmlns:controls="clr-namespace:EditorPanelExample.Views.Controls"
+		xmlns:models="using:EditorPanelExample.Models"
+		xmlns:controls="using:EditorPanelExample.Views.Controls"
         mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
 		Width="250" Height="750" Background="#383838"
         x:Class="EditorPanelExample.Views.MainWindow"
@@ -16,15 +16,15 @@
 	</Design.DataContext>
 
 	<Window.DataTemplates>
-		<DataTemplate DataType="{x:Type models:Material}">
+		<DataTemplate DataType="{x:Type vm:MaterialViewModel}">
 			<controls:MaterialControl DataContext="{Binding}"/>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type models:MaterialList}">
+		<DataTemplate DataType="{x:Type vm:MaterialListViewModel}">
 			<controls:MaterialListControl DataContext="{Binding}"/>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type models:Transform}">
+		<DataTemplate DataType="{x:Type vm:TransformViewModel}">
 			<controls:TransformControl DataContext="{Binding}"/>
 		</DataTemplate>
 	</Window.DataTemplates>
@@ -48,7 +48,7 @@
 	</Window.Styles>
 
 	<Grid>
-		<ItemsControl Items="{Binding Components}">
+		<ItemsControl Items="{Binding ViewModels}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<StackPanel Orientation="Vertical" />
