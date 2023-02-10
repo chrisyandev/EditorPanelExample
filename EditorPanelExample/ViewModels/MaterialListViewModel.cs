@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace EditorPanelExample.ViewModels
         public void AddMaterial()
         {
             Materials.Add(new Material(""));
+        }
+
+        public void RemoveMaterial(Material material)
+        {
+            Materials.Remove(material);
         }
     }
 }

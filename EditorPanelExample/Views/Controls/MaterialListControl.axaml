@@ -20,14 +20,39 @@
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
 						<Grid ColumnDefinitions="* Auto">
-							<TextBox Grid.Column="0" Text="{Binding MaterialName}"/>
-							<Button Grid.Column="1" Margin="2 0" Foreground="White">X</Button>
+							<TextBox Grid.Column="0" Text="{Binding Path=MaterialName}"/>
+							<Button Grid.Column="1"
+									Margin="2 0"
+									Foreground="White"
+									FontSize="12"
+									Command="{Binding Path=$parent[ItemsControl].DataContext.RemoveMaterial}"
+									CommandParameter="{Binding}">
+								<Button.Styles>
+									<Style Selector="Button:pointerover /template/ ContentPresenter">
+										<Setter Property="TextBlock.Foreground" Value="White"/>
+										<Setter Property="Background" Value="Red"/>
+									</Style>
+								</Button.Styles>
+								X
+							</Button>
 						</Grid>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 
-			<Button Grid.Row="2" Command="{Binding AddMaterial}">Add Material</Button>
+			<Button Grid.Row="2"
+					HorizontalAlignment="Center"
+					Margin="5"
+					FontSize="12"
+					Command="{Binding AddMaterial}">
+				<Button.Styles>
+					<Style Selector="Button:pointerover /template/ ContentPresenter">
+						<Setter Property="TextBlock.Foreground" Value="White"/>
+						<Setter Property="Background" Value="SlateBlue"/>
+					</Style>
+				</Button.Styles>
+				Add Material
+			</Button>
 		</Grid>
 	</Border>
 	
