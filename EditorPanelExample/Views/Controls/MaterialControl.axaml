@@ -15,8 +15,37 @@
 				<Image Width="12" VerticalAlignment="Center" Source="avares://EditorPanelExample/Assets/arrow-down.png"/>
 				<TextBlock Classes="controlTitle">Material</TextBlock>
 			</StackPanel>
-			
-			<TextBox Grid.Row="1" Text="{Binding Path=MaterialName}"/>
+
+			<Grid Grid.Row="1">
+				<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Path=Material.MaterialName}"/>
+				
+				<Button Command="{Binding Path=ClearMaterial}"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						HorizontalContentAlignment="Center"
+						Background="#64676E"
+						Foreground="White"
+						CornerRadius="25"
+						Padding="0"
+						Height="18"
+						Width="18"
+						FontSize="9"
+						Margin="0,0,6,0">
+					<Button.Styles>
+						<Style Selector="Button:pointerover /template/ ContentPresenter">
+							<Setter Property="Background" Value="#383838"/>
+							<Setter Property="TextBlock.Foreground" Value="White" />
+						</Style>
+
+						<Style Selector="Button:pressed /template/ ContentPresenter">
+							<Setter Property="TextBlock.Foreground" Value="White" />
+							<Setter Property="TextBlock.Background" Value="Black" />
+						</Style>
+					</Button.Styles>
+					X
+				</Button>
+			</Grid>
 		</Grid>
 	</Border>
 

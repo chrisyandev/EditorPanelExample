@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,22 @@ namespace EditorPanelExample.ViewModels
 {
     public class MaterialViewModel : ViewModelBase
     {
-        private readonly Material _material;
+        private Material _material;
 
         public MaterialViewModel(Material material)
         {
             _material = material;
         }
 
-        public string MaterialName => _material.MaterialName;
+        public Material Material
+        { 
+            get => _material;
+            set => this.RaiseAndSetIfChanged(ref _material, value);
+        }
 
+        public void ClearMaterial()
+        {
+            Material = new Material("");
+        }
     }
 }
