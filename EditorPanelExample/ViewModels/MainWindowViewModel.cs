@@ -17,7 +17,6 @@ namespace EditorPanelExample.ViewModels
         {
             ViewModels = new ObservableCollection<ViewModelBase>();
 
-
             // Mock Data
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
 
@@ -29,6 +28,10 @@ namespace EditorPanelExample.ViewModels
             ViewModels.Add(new MaterialListViewModel(materialList));
 
             ViewModels.Add(new TransformViewModel(new Transform(24, 30, 55)));
+
+            ViewModels.Add(new MaterialViewModel(new Material("AnotherExampleMaterial.mat")));
+
+            ViewModels.Add(new TransformViewModel(new Transform(54, 10.5f, -20)));
         }
 
     }

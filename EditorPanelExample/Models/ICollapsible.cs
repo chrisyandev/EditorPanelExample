@@ -8,7 +8,7 @@ namespace EditorPanelExample.Models
 {
     internal interface ICollapsible
     {
-        public bool IsCollapsed { get; set; }
+        bool IsCollapsed { get; set; }
 
         void ToggleCollapse();
     }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    public class MaterialList : List<Material>, IMyComponent
+    public class MaterialList : List<Material>
     {
-        public bool Expanded { get; set; } = true;
+
     }
 }

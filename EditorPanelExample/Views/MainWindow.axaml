@@ -6,7 +6,7 @@
 		xmlns:models="using:EditorPanelExample.Models"
 		xmlns:controls="using:EditorPanelExample.Views.Controls"
         mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
-		Width="250" Height="750" Background="#383838"
+		Width="250" Height="750" MinHeight="100" Background="#383838"
         x:Class="EditorPanelExample.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="EditorPanelExample">
@@ -42,14 +42,16 @@
 		</Style>
 	</Window.Styles>
 
-	<Grid>
-		<ItemsControl Items="{Binding ViewModels}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="Vertical" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
-	</Grid>
+	<ScrollViewer>
+		<Grid>
+			<ItemsControl Items="{Binding ViewModels}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Vertical" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</Grid>
+	</ScrollViewer>
 
 </Window>

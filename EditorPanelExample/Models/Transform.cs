@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    public class Transform : IMyComponent
+    public class Transform
     {
         public float X { get; set; }
         public float Y { get; set; }
