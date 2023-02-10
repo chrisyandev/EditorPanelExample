@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    interface Collapsible
+    public interface IComponent
     {
-        void Collapse();
+
     }
 }

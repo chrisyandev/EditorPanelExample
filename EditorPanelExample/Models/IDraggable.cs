@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    interface Draggable
+    interface IDraggable
     {
         void Drag();
     }
