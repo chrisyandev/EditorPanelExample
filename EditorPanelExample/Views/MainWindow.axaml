@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EditorPanelExample.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EditorPanelExample.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="EditorPanelExample">
+
+	<Window.Resources>
+		
+		<DataTemplate x:Key="materialTemplate">
+			<TextBox>{Binding Path=MaterialName}</TextBox>
+		</DataTemplate>
+		
+		<DataTemplate x:Key="materialListTemplate">
+			<ListBox Items="{Binding Path=Materials}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border Background="Red" CornerRadius="4" Padding="4">
+							<TextBlock Text="{Binding Path=MaterialName}"/>
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</DataTemplate>
+
+		<DataTemplate x:Key="transformTemplate">
+			<StackPanel>
+				<TextBox>{Binding Path=X}</TextBox>
+				<TextBox>{Binding Path=Y}</TextBox>
+				<TextBox>{Binding Path=Z}</TextBox>
+			</StackPanel>
+		</DataTemplate>
+		
+	</Window.Resources>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid>
+
+		<ItemsControl Items="{Binding EditorPanels}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+		
+	</Grid>
+
+
+</Window>
