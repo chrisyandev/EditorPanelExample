@@ -3,9 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="50"
-			 Width="150" Height="50"
              x:Class="EditorPanelExample.Views.Controls.MaterialControl">
-	<Grid>
-		<TextBox Text="{Binding Path=MaterialName}"/>
-	</Grid>
+
+	<Border Background="#383838"
+			BorderBrush="Black"
+			BorderThickness="0 0 0 2"
+			CornerRadius="0"
+			Padding="4">
+		<Grid RowDefinitions="20, Auto">
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
+				<Image Width="12" VerticalAlignment="Center" Source="avares://EditorPanelExample/Assets/arrow-down.png"/>
+				<TextBlock Classes="controlTitle">Material</TextBlock>
+			</StackPanel>
+			
+			<TextBox Grid.Row="1" Text="{Binding Path=MaterialName}"/>
+		</Grid>
+	</Border>
+
 </UserControl>

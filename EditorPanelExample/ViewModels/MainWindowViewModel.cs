@@ -25,19 +25,6 @@ namespace EditorPanelExample.ViewModels
             Components.Add(materialList);
 
             Components.Add(new Transform(24, 30, 55));
-
-            /*            EditorPanels = new List<EditorPanel>();
-
-                        EditorPanels.Add(new EditorPanel(new Material("ExampleMaterial.mat")));*/
-
-            /*            MaterialList materialList = new MaterialList();
-                        materialList.Materials.Add(new Material("ExampleMaterial.mat"));
-                        materialList.Materials.Add(new Material("ExampleMaterial1.mat"));
-                        materialList.Materials.Add(new Material("ExampleMaterial2.mat"));
-                        materialList.Materials.Add(new Material("ExampleMaterial3.mat"));
-                        EditorPanels.Add(new EditorPanel(materialList));
-
-                        EditorPanels.Add);*/
         }
     }
 }

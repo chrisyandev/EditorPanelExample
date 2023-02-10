@@ -3,19 +3,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="100"
-			 Width="150" Height="100"
              x:Class="EditorPanelExample.Views.Controls.MaterialListControl">
-	
-	<Grid>
-		<ListBox Items="{Binding}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<Border Background="Red" CornerRadius="4" Padding="4">
-						<TextBlock Text="{Binding Path=MaterialName}"/>
-					</Border>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-	</Grid>
+
+	<Border Background="#383838"
+			BorderBrush="Black"
+			BorderThickness="0 0 0 2"
+			CornerRadius="0"
+			Padding="4">
+		<Grid RowDefinitions="20, Auto">
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
+				<Image Width="12" VerticalAlignment="Center" Source="avares://EditorPanelExample/Assets/arrow-down.png"/>
+				<TextBlock Classes="controlTitle">Material List</TextBlock>
+			</StackPanel>
+
+			<ItemsControl Grid.Row="1" Items="{Binding}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<TextBox Text="{Binding Path=MaterialName}"/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Grid>
+	</Border>
 	
 </UserControl>
