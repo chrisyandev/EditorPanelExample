@@ -19,10 +19,14 @@
 			<ItemsControl Grid.Row="1" Items="{Binding}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<TextBox Text="{Binding Path=MaterialName}"/>
+						<Grid ColumnDefinitions="* Auto">
+							<TextBox Grid.Column="0" Text="{Binding Path=MaterialName}"/>
+							<Button Grid.Column="1" Margin="2 0" Foreground="White">X</Button>
+						</Grid>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
+
 		</Grid>
 	</Border>
 	

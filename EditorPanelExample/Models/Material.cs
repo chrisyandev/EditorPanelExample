@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    public class Material : IComponent
+    public class Material : IMyComponent
     {
         public string MaterialName { get; set; }
 

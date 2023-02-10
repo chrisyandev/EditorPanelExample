@@ -3,17 +3,18 @@ using DynamicData;
 using EditorPanelExample.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace EditorPanelExample.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public List<IComponent> Components { get; set; }
+        public ObservableCollection<IMyComponent> Components { get; set; }
 
         public MainWindowViewModel()
         {
-            Components = new List<IComponent>();
+            Components = new ObservableCollection<IMyComponent>();
 
             Components.Add(new Material("ExampleMaterial.mat"));
 
@@ -26,5 +27,6 @@ namespace EditorPanelExample.ViewModels
 
             Components.Add(new Transform(24, 30, 55));
         }
+
     }
 }

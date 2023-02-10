@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    public interface IComponent
+    public interface IMyComponent
     {
 
     }
