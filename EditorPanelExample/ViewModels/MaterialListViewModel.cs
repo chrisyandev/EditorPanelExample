@@ -6,12 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EditorPanelExample.Models;
+using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class MaterialListViewModel : ViewModelBase
+    public class MaterialListViewModel : ViewModelBase, ICollapsible
     {
+        private bool _isCollapsed;
+
         public ObservableCollection<Material> Materials { get; set; }
+
+        public bool IsCollapsed
+        {
+            get => _isCollapsed;
+            set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
+        }
 
         public MaterialListViewModel(MaterialList materialList)
         {
@@ -26,6 +35,11 @@ namespace EditorPanelExample.ViewModels
         public void RemoveMaterial(Material material)
         {
             Materials.Remove(material);
+        }
+
+        public void ToggleCollapse()
+        {
+            IsCollapsed = !IsCollapsed;
         }
     }
 }

@@ -10,49 +10,67 @@
 			BorderThickness="0 0 0 2"
 			CornerRadius="0"
 			Padding="4">
-		<Grid RowDefinitions="20, Auto, Auto">
+		<Grid RowDefinitions="20, Auto">
 			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
-				<Image Width="12" VerticalAlignment="Center" Source="avares://EditorPanelExample/Assets/arrow-down.png"/>
+				<Button Command="{Binding Path=ToggleCollapse}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						Width="18" Height="18"
+						Padding="0">
+					<Panel>
+						<Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
+							   IsVisible="{Binding !IsCollapsed}"
+							   Width="12" Height="12" />
+						<Image Source="avares://EditorPanelExample/Assets/arrow-right.png"
+							   IsVisible="{Binding IsCollapsed}"
+							   Width="12" Height="12" />
+					</Panel>
+				</Button>
+				
 				<TextBlock Classes="controlTitle">Material List</TextBlock>
 			</StackPanel>
 
-			<ItemsControl Grid.Row="1" Items="{Binding Path=Materials}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<Grid ColumnDefinitions="* Auto">
-							<TextBox Grid.Column="0" Text="{Binding Path=MaterialName}"/>
-							<Button Grid.Column="1"
-									Margin="2 0"
-									Foreground="White"
-									FontSize="12"
-									Command="{Binding Path=$parent[ItemsControl].DataContext.RemoveMaterial}"
-									CommandParameter="{Binding}">
-								<Button.Styles>
-									<Style Selector="Button:pointerover /template/ ContentPresenter">
-										<Setter Property="TextBlock.Foreground" Value="White"/>
-										<Setter Property="Background" Value="Red"/>
-									</Style>
-								</Button.Styles>
-								X
-							</Button>
-						</Grid>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
+				<ItemsControl Items="{Binding Path=Materials}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="* Auto">
+								<TextBox Grid.Column="0" Text="{Binding Path=MaterialName}"/>
+								<Button Grid.Column="1"
+										Margin="2 0"
+										Foreground="White"
+										FontSize="12"
+										Command="{Binding Path=$parent[ItemsControl].DataContext.RemoveMaterial}"
+										CommandParameter="{Binding}">
+									<Button.Styles>
+										<Style Selector="Button:pointerover /template/ ContentPresenter">
+											<Setter Property="TextBlock.Foreground" Value="White"/>
+											<Setter Property="Background" Value="Red"/>
+										</Style>
+									</Button.Styles>
+									X
+								</Button>
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
 
-			<Button Grid.Row="2"
-					HorizontalAlignment="Center"
-					Margin="5"
-					FontSize="12"
-					Command="{Binding AddMaterial}">
-				<Button.Styles>
-					<Style Selector="Button:pointerover /template/ ContentPresenter">
-						<Setter Property="TextBlock.Foreground" Value="White"/>
-						<Setter Property="Background" Value="SlateBlue"/>
-					</Style>
-				</Button.Styles>
-				Add Material
-			</Button>
+				<Button HorizontalAlignment="Center"
+						Margin="5"
+						FontSize="12"
+						Command="{Binding AddMaterial}">
+					<Button.Styles>
+						<Style Selector="Button:pointerover /template/ ContentPresenter">
+							<Setter Property="TextBlock.Foreground" Value="White"/>
+							<Setter Property="Background" Value="SlateBlue"/>
+						</Style>
+					</Button.Styles>
+					Add Material
+				</Button>
+			</StackPanel>
+			
 		</Grid>
 	</Border>
 	

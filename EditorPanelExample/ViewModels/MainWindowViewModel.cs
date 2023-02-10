@@ -17,6 +17,8 @@ namespace EditorPanelExample.ViewModels
         {
             ViewModels = new ObservableCollection<ViewModelBase>();
 
+
+            // Mock Data
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
 
             MaterialList materialList = new MaterialList();

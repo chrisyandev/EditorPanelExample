@@ -12,11 +12,27 @@
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
 			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
-				<Image Width="12" VerticalAlignment="Center" Source="avares://EditorPanelExample/Assets/arrow-down.png"/>
+				<Button Command="{Binding Path=ToggleCollapse}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						VerticalContentAlignment="Center"
+						Width="18" Height="18"
+						Padding="0">
+					<Panel>
+						<Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
+							   IsVisible="{Binding !IsCollapsed}"
+							   Width="12" Height="12" />
+						<Image Source="avares://EditorPanelExample/Assets/arrow-right.png"
+							   IsVisible="{Binding IsCollapsed}"
+							   Width="12" Height="12" />
+					</Panel>
+				</Button>
+
 				<TextBlock Classes="controlTitle">Material</TextBlock>
 			</StackPanel>
 
-			<Grid Grid.Row="1">
+			<Grid Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
 				<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Path=Material.MaterialName}"/>
 				
 				<Button Command="{Binding Path=ClearMaterial}"
@@ -28,8 +44,7 @@
 						Foreground="White"
 						CornerRadius="25"
 						Padding="0"
-						Height="18"
-						Width="18"
+						Width="18" Height="18"
 						FontSize="9"
 						Margin="0,0,6,0">
 					<Button.Styles>
