@@ -12,33 +12,37 @@
         Title="EditorPanelExample">
 
 	<Design.DataContext>
-		<vm:MainWindowViewModel/>
+		<vm:MainWindowViewModel />
 	</Design.DataContext>
 
 	<Window.DataTemplates>
 		<DataTemplate DataType="{x:Type vm:MaterialViewModel}">
-			<controls:MaterialControl DataContext="{Binding}"/>
+			<controls:MaterialControl DataContext="{Binding}" />
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:MaterialListViewModel}">
-			<controls:MaterialListControl DataContext="{Binding}"/>
+			<controls:MaterialListControl DataContext="{Binding}" />
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:TransformViewModel}">
-			<controls:TransformControl DataContext="{Binding}"/>
+			<controls:TransformControl DataContext="{Binding}" />
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type vm:AnimatorViewModel}">
+			<controls:AnimatorControl DataContext="{Binding}" />
 		</DataTemplate>
 	</Window.DataTemplates>
 
 	<Window.Styles>
 		<Style Selector="TextBlock.controlTitle">
-			<Setter Property="FontSize" Value="12"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
 
 		<Style Selector="Button">
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Foreground" Value="White" />
 		</Style>
 	</Window.Styles>
 
