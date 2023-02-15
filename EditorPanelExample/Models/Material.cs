@@ -8,11 +8,11 @@ namespace EditorPanelExample.Models
 {
     public class Material
     {
-        public string MaterialName { get; set; }
+        public string Name { get; set; }
 
-        public Material(string materialName)
+        public Material(string name)
         {
-            MaterialName = materialName;
+            Name = name;
         }
     }
 }

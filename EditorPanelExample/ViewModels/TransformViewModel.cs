@@ -15,15 +15,17 @@ namespace EditorPanelExample.ViewModels
 
         private Transform _transform;
 
+        public TransformViewModel(Transform transform)
+        {
+            _transform = transform;
+        }
+
+        public string Description { get; } = "Placeholder for description of Transform";
+
         public bool IsCollapsed
         {
             get => _isCollapsed;
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
-        }
-
-        public TransformViewModel(Transform transform)
-        {
-            _transform = transform;
         }
 
         public Transform Transform

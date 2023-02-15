@@ -12,10 +12,10 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate Title="Material" />
+			<controls:ComponentHeaderTemplate MyTitle="Material" MyTooltip="{Binding Description}"/>
 
 			<Grid Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
-				<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Material.MaterialName}"/>
+				<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Material.Name}"/>
 				
 				<Button Command="{Binding ClearMaterial}"
 						HorizontalAlignment="Right"

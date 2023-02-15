@@ -21,6 +21,8 @@ namespace EditorPanelExample.ViewModels
             _material = material;
         }
 
+        public string Description { get; } = "Placeholder for description of Material";
+
         public bool IsCollapsed 
         {
             get => _isCollapsed;

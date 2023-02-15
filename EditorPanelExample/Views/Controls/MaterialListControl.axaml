@@ -12,14 +12,14 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate Title="Material List" />
+			<controls:ComponentHeaderTemplate MyTitle="Material List" MyTooltip="{Binding Description}"/>
 
 			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
 				<ItemsControl Items="{Binding Materials}">
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>
 							<Grid ColumnDefinitions="* Auto">
-								<TextBox Grid.Column="0" Text="{Binding MaterialName}"/>
+								<TextBox Grid.Column="0" Text="{Binding Name}"/>
 								<Button Grid.Column="1"
 										Margin="2 0"
 										Foreground="White"

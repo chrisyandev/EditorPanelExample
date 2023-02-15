@@ -16,15 +16,17 @@ namespace EditorPanelExample.ViewModels
 
         public ObservableCollection<Material> Materials { get; set; }
 
+        public MaterialListViewModel(MaterialList materialList)
+        {
+            Materials = new ObservableCollection<Material>(materialList);
+        }
+
+        public string Description { get; } = "Placeholder for description of Material List";
+
         public bool IsCollapsed
         {
             get => _isCollapsed;
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
-        }
-
-        public MaterialListViewModel(MaterialList materialList)
-        {
-            Materials = new ObservableCollection<Material>(materialList);
         }
 
         public void AddMaterial()

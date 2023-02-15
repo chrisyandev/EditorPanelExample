@@ -6,13 +6,22 @@ namespace EditorPanelExample.Views.Controls
 {
     public class ComponentHeaderTemplate : TemplatedControl
     {
-        public static readonly StyledProperty<string> TitleProperty = 
-            AvaloniaProperty.Register<ComponentHeaderTemplate, string>(nameof(Title), $"<{nameof(Title)}>");
+        public static readonly StyledProperty<string> MyTitleProperty = 
+            AvaloniaProperty.Register<ComponentHeaderTemplate, string>(nameof(MyTitle), $"<{nameof(MyTitle)}>");
 
-        public string Title
+        public static readonly StyledProperty<string> MyTooltipProperty =
+            AvaloniaProperty.Register<ComponentHeaderTemplate, string>(nameof(MyTooltip), $"<{nameof(MyTooltip)}>");
+
+        public string MyTitle
         {
-            get => GetValue(TitleProperty);
-            set => SetValue(TitleProperty, value);
+            get => GetValue(MyTitleProperty);
+            set => SetValue(MyTitleProperty, value);
+        }
+
+        public string MyTooltip
+        {
+            get => GetValue(MyTooltipProperty);
+            set => SetValue(MyTooltipProperty, value);
         }
     }
 }

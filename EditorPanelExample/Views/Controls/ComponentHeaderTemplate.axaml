@@ -27,7 +27,7 @@
 				  </Panel>
 			  </Button>
 
-			  <TextBlock Classes="controlTitle" Text="{TemplateBinding Title}" />
+			  <TextBlock Classes="controlTitle" ToolTip.Tip="{TemplateBinding MyTooltip}" Text="{TemplateBinding MyTitle}" />
 		  </StackPanel>
       </ControlTemplate>
     </Setter>
