@@ -8,5 +8,6 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+		<StyleInclude Source="avares://EditorPanelExample/Views/Controls/ComponentHeaderTemplate.axaml" />
     </Application.Styles>
 </Application>

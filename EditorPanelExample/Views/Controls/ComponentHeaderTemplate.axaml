@@ -1,0 +1,35 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:EditorPanelExample.Views.Controls">
+  <Design.PreviewWith>
+    <controls:ComponentHeaderTemplate />
+  </Design.PreviewWith>
+
+  <Style Selector="controls|ComponentHeaderTemplate">
+    <!-- Set Defaults -->
+    <Setter Property="Template">
+      <ControlTemplate>
+		  <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
+			  <Button Command="{Binding ToggleCollapse}"
+					  HorizontalAlignment="Center"
+					  VerticalAlignment="Center"
+					  HorizontalContentAlignment="Center"
+					  VerticalContentAlignment="Center"
+					  Width="18" Height="18"
+					  Padding="0">
+				  <Panel>
+					  <Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
+							 IsVisible="{Binding !IsCollapsed}"
+							 Width="12" Height="12" />
+					  <Image Source="avares://EditorPanelExample/Assets/arrow-right.png"
+							 IsVisible="{Binding IsCollapsed}"
+							 Width="12" Height="12" />
+				  </Panel>
+			  </Button>
+
+			  <TextBlock Classes="controlTitle" Text="{TemplateBinding Title}" />
+		  </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>
