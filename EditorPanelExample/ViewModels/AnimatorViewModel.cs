@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EditorPanelExample.ViewModels
@@ -14,26 +15,26 @@ namespace EditorPanelExample.ViewModels
     {
         private bool _isCollapsed;
 
-        private string _controller;
-        private string _avatar;
-        private bool _applyRootMotion;
-        private UpdateMode _updateMode;
+        private Animator _animator;
         private string _selectedUpdateMode;
-        private CullingMode _cullingMode;
         private string _selectedCullingMode;
 
         public AnimatorViewModel(Animator animator)
         {
-            _controller = animator.Controller;
-            _avatar = animator.Avatar;
-            _applyRootMotion = animator.ApplyRootMotion;
-            _updateMode = animator.UpdateMode;
-            _cullingMode = animator.CullMode;
+            _animator = animator;
 
-            UpdateModes = new(Enum.GetNames<UpdateMode>());
+            UpdateModes = new(
+                Enum.GetNames<UpdateMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
             SelectedUpdateMode = UpdateModes.FirstOrDefault();
 
-            CullingModes = new(Enum.GetNames<CullingMode>());
+            CullingModes = new(
+                Enum.GetNames<CullingMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
             SelectedCullingMode = CullingModes.FirstOrDefault();
         }
 
@@ -47,20 +48,41 @@ namespace EditorPanelExample.ViewModels
 
         public string Controller
         {
-            get => _controller;
-            set => this.RaiseAndSetIfChanged(ref _controller, value);
+            get => _animator.Controller;
+            set
+            {
+                if (value == _animator.Controller) { return; }
+                _animator.Controller = value;
+                this.RaisePropertyChanged(nameof(Controller));
+
+                Debug.WriteLine(_animator.Controller);
+            }
         }
 
         public string Avatar
         {
-            get => _avatar;
-            set => this.RaiseAndSetIfChanged(ref _avatar, value);
+            get => _animator.Avatar;
+            set
+            {
+                if (value == _animator.Avatar) { return; }
+                _animator.Avatar = value;
+                this.RaisePropertyChanged(nameof(Avatar));
+
+                Debug.WriteLine(_animator.Avatar);
+            }
         }
 
         public bool ApplyRootMotion
         {
-            get => _applyRootMotion;
-            set => this.RaiseAndSetIfChanged(ref _applyRootMotion, value);
+            get => _animator.ApplyRootMotion;
+            set
+            {
+                if (value == _animator.ApplyRootMotion) { return; }
+                _animator.ApplyRootMotion = value;
+                this.RaisePropertyChanged(nameof(ApplyRootMotion));
+
+                Debug.WriteLine(_animator.ApplyRootMotion);
+            }
         }
 
         public ObservableCollection<string> UpdateModes { get; set; }
@@ -68,7 +90,18 @@ namespace EditorPanelExample.ViewModels
         public string SelectedUpdateMode
         {
             get => _selectedUpdateMode;
-            set => this.RaiseAndSetIfChanged(ref _selectedUpdateMode, value);
+            set
+            {
+                _selectedUpdateMode = value;
+
+                string updateModeNoSpaces = string.Concat(value.Split(' '));
+                bool enumParsed = Enum.TryParse(updateModeNoSpaces, true, out UpdateMode result);
+                if (!enumParsed || result == _animator.CurrentUpdateMode) { return; }
+                _animator.CurrentUpdateMode = result;
+                this.RaisePropertyChanged(nameof(SelectedUpdateMode));
+
+                Debug.WriteLine(_animator.CurrentUpdateMode);
+            }
         }
 
         public ObservableCollection<string> CullingModes { get; set; }
@@ -76,7 +109,18 @@ namespace EditorPanelExample.ViewModels
         public string SelectedCullingMode
         {
             get => _selectedCullingMode;
-            set => this.RaiseAndSetIfChanged(ref _selectedCullingMode, value);
+            set
+            {
+                _selectedCullingMode = value;
+
+                string cullingModeNoSpaces = string.Concat(value.Split(' '));
+                bool enumParsed = Enum.TryParse(cullingModeNoSpaces, true, out CullingMode result);
+                if (!enumParsed || result == _animator.CurrentCullingMode) { return; }
+                _animator.CurrentCullingMode = result;
+                this.RaisePropertyChanged(nameof(SelectedCullingMode));
+
+                Debug.WriteLine(_animator.CurrentCullingMode);
+            }
         }
 
         public void ToggleCollapse()
@@ -92,11 +136,6 @@ namespace EditorPanelExample.ViewModels
         public void ClearAvatar()
         {
             Avatar = "";
-        }
-
-        public void ToggleApplyRootMotion()
-        {
-            ApplyRootMotion = !ApplyRootMotion;
         }
     }
 }

@@ -75,11 +75,18 @@
 					</Button>
 				</Grid>
 
-				<CheckBox IsChecked="{Binding ApplyRootMotion}">Apply Root Motion</CheckBox>
+				<CheckBox IsChecked="{Binding ApplyRootMotion}" Foreground="White">
+					<CheckBox.Styles>
+						<Style Selector="CheckBox:pointerover /template/ ContentPresenter">
+							<Setter Property="TextBlock.Foreground" Value="White"/>
+						</Style>
+					</CheckBox.Styles>
+					Apply Root Motion
+				</CheckBox>
 
-				<ComboBox Items="{Binding UpdateModes}" SelectedItem="{Binding SelectedUpdateMode}"/>
+				<ComboBox Items="{Binding UpdateModes}" SelectedItem="{Binding SelectedUpdateMode}" Width="200"/>
 				
-				<ComboBox Items="{Binding CullingModes}" SelectedItem="{Binding SelectedCullingMode}"/>
+				<ComboBox Items="{Binding CullingModes}" SelectedItem="{Binding SelectedCullingMode}" Width="200"/>
 				
 			</StackPanel>
 			

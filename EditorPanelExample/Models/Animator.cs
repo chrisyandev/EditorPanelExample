@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EditorPanelExample.Models
 {
     public enum UpdateMode
-    { 
+    {
         Normal,
         AnimatePhysics,
         UnscaledTime
@@ -25,17 +25,18 @@ namespace EditorPanelExample.Models
         public string Controller { get; set; }
         public string Avatar { get; set; }
         public bool ApplyRootMotion { get; set; }
-        public UpdateMode UpdateMode { get; set; }
-        public CullingMode CullMode { get; set; }
+        public UpdateMode CurrentUpdateMode { get; set; }
+        public CullingMode CurrentCullingMode { get; set; }
 
-        public Animator(string controller, string avatar, bool applyRootMotion,
-            UpdateMode updateMode = UpdateMode.Normal, CullingMode cullMode = CullingMode.CullUpdateTransforms)
+        public Animator(string controller, string avatar, bool applyRootMotion = false,
+            UpdateMode currentUpdateMode = UpdateMode.Normal,
+            CullingMode currentCullingMode = CullingMode.AlwaysAnimate)
         {
             Controller = controller;
             Avatar = avatar;
             ApplyRootMotion = applyRootMotion;
-            UpdateMode = updateMode;
-            CullMode = cullMode;
+            CurrentUpdateMode = currentUpdateMode;
+            CurrentCullingMode = currentCullingMode;
         }
     }
 }

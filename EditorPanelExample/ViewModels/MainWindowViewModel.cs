@@ -29,7 +29,7 @@ namespace EditorPanelExample.ViewModels
 
             ViewModels.Add(new TransformViewModel(new Transform(24, 30, 55)));
 
-            ViewModels.Add(new AnimatorViewModel(new Animator("KnightController.controller", "knightAvatar", true)));
+            ViewModels.Add(new AnimatorViewModel(new Animator("KnightController.controller", "knightAvatar")));
         }
 
     }
