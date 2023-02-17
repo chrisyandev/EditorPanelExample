@@ -12,7 +12,7 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Animator" MyTooltip="{Binding Description}"/>
+			<controls:ComponentHeaderTemplate MyTitle="Animator" MyTooltip="{Binding Description}" />
 
 			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
 				<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
@@ -30,35 +30,10 @@
 					<TextBlock Grid.Row="1" Grid.Column="0" Foreground="White">Avatar</TextBlock>
 
 					<!-- TODO: make this TextBox with X button inside reusable -->
-					<Grid Grid.Row="0" Grid.Column="1">
-						<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Controller}"/>
-
-						<Button Command="{Binding ClearController}"
-								HorizontalAlignment="Right"
-								VerticalAlignment="Center"
-								VerticalContentAlignment="Center"
-								HorizontalContentAlignment="Center"
-								Background="#64676E"
-								Foreground="White"
-								CornerRadius="25"
-								Padding="0"
-								Width="18" Height="18"
-								FontSize="9"
-								Margin="0,0,6,0">
-							<Button.Styles>
-								<Style Selector="Button:pointerover /template/ ContentPresenter">
-									<Setter Property="Background" Value="#383838"/>
-									<Setter Property="TextBlock.Foreground" Value="White" />
-								</Style>
-
-								<Style Selector="Button:pressed /template/ ContentPresenter">
-									<Setter Property="TextBlock.Foreground" Value="White" />
-									<Setter Property="TextBlock.Background" Value="Black" />
-								</Style>
-							</Button.Styles>
-							X
-						</Button>
-					</Grid>
+					<controls:TextBoxClearButtonInsideTemplate
+						Grid.Row="0" Grid.Column="1"
+						MyText="{Binding Controller}"
+						MyClearCommand="{Binding ClearController}" />
 
 					<Grid Grid.Row="1" Grid.Column="1">
 						<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Avatar}"/>
