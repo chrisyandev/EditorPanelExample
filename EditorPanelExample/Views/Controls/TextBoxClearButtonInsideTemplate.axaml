@@ -10,7 +10,8 @@
     <Setter Property="Template">
       <ControlTemplate>
 		  <Grid>
-			  <TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{TemplateBinding MyText}" />
+
+			  <TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{TemplateBinding MyText, Mode=TwoWay}" />
 
 			  <Button Command="{TemplateBinding MyClearCommand}"
 					  HorizontalAlignment="Right"

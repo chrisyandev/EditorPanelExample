@@ -11,11 +11,11 @@ namespace EditorPanelExample.Views.Controls
     public class TextBoxClearButtonInsideTemplate : TemplatedControl
     {
         public static readonly StyledProperty<string> MyTextProperty =
-            AvaloniaProperty.Register<TextBoxClearButtonInsideTemplate, string>(nameof(MyText), $"<{nameof(MyText)}>", false, BindingMode.TwoWay);
+            AvaloniaProperty.Register<TextBoxClearButtonInsideTemplate,string>(nameof(MyText), $"<{nameof(MyText)}>",
+                false, BindingMode.TwoWay);
 
         public static readonly StyledProperty<ICommand> MyClearCommandProperty =
             AvaloniaProperty.Register<TextBoxClearButtonInsideTemplate, ICommand>(nameof(MyClearCommand));
-
 
         public string MyText
         {
