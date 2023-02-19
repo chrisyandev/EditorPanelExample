@@ -29,15 +29,22 @@ namespace EditorPanelExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
         }
 
-        public Material Material
-        { 
-            get => _material;
-            set => this.RaiseAndSetIfChanged(ref _material, value);
+        public string Material
+        {
+            get => _material.Name;
+            set
+            {
+                if (value == _material.Name) { return; }
+                _material.Name = value;
+                this.RaisePropertyChanged(nameof(Material));
+
+                Debug.WriteLine(_material.Name);
+            }
         }
 
         public void ClearMaterial()
         {
-            Material = new Material("");
+            Material = "";
         }
 
         public void ToggleCollapse()

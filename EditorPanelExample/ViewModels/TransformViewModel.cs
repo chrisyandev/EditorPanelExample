@@ -28,10 +28,43 @@ namespace EditorPanelExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
         }
 
-        public Transform Transform
+        public float X
         {
-            get => _transform;
-            set => this.RaiseAndSetIfChanged(ref _transform, value);
+            get => _transform.X;
+            set
+            {
+                if (value == _transform.X) { return; }
+                _transform.X = value;
+                this.RaisePropertyChanged(nameof(X));
+
+                Debug.WriteLine(_transform.X);
+            }
+        }
+
+        public float Y
+        {
+            get => _transform.Y;
+            set
+            {
+                if (value == _transform.Y) { return; }
+                _transform.Y = value;
+                this.RaisePropertyChanged(nameof(Y));
+
+                Debug.WriteLine(_transform.Y);
+            }
+        }
+
+        public float Z
+        {
+            get => _transform.Z;
+            set
+            {
+                if (value == _transform.Z) { return; }
+                _transform.Z = value;
+                this.RaisePropertyChanged(nameof(Z));
+
+                Debug.WriteLine(_transform.Z);
+            }
         }
 
         public void ToggleCollapse()
@@ -41,7 +74,9 @@ namespace EditorPanelExample.ViewModels
 
         public void ClearTransform()
         {
-            Transform = new Transform(0, 0, 0);
+            X = 0;
+            Y = 0;
+            Z = 0;
         }
     }
 }

@@ -12,36 +12,12 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Material" MyTooltip="{Binding Description}"/>
+			<controls:ComponentHeaderTemplate MyTitle="Material" MyTooltip="{Binding Description}" />
 
 			<Grid Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
-				<TextBox Padding="10,0,30,0" VerticalContentAlignment="Center" Text="{Binding Material.Name}"/>
-				
-				<Button Command="{Binding ClearMaterial}"
-						HorizontalAlignment="Right"
-						VerticalAlignment="Center"
-						VerticalContentAlignment="Center"
-						HorizontalContentAlignment="Center"
-						Background="#64676E"
-						Foreground="White"
-						CornerRadius="25"
-						Padding="0"
-						Width="18" Height="18"
-						FontSize="9"
-						Margin="0,0,6,0">
-					<Button.Styles>
-						<Style Selector="Button:pointerover /template/ ContentPresenter">
-							<Setter Property="Background" Value="#383838"/>
-							<Setter Property="TextBlock.Foreground" Value="White" />
-						</Style>
-
-						<Style Selector="Button:pressed /template/ ContentPresenter">
-							<Setter Property="TextBlock.Foreground" Value="White" />
-							<Setter Property="TextBlock.Background" Value="Black" />
-						</Style>
-					</Button.Styles>
-					X
-				</Button>
+				<controls:TextBoxClearButtonInsideTemplate
+					MyText="{Binding Material}"
+					MyClearCommand="{Binding ClearMaterial}" />
 			</Grid>
 		</Grid>
 	</Border>
