@@ -9,11 +9,16 @@ using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class TransformViewModel : ViewModelBase, ICollapsible
+    public class TransformViewModel : ViewModelBase, IMyCollapsible
     {
         private bool _isCollapsed;
 
         private Transform _transform;
+
+        public TransformViewModel()
+        {
+            _transform = new Transform();
+        }
 
         public TransformViewModel(Transform transform)
         {

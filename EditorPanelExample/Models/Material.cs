@@ -10,7 +10,7 @@ namespace EditorPanelExample.Models
     {
         public string Name { get; set; }
 
-        public Material(string name)
+        public Material(string name = "")
         {
             Name = name;
         }

@@ -47,7 +47,7 @@
 	</Window.Styles>
 
 	<ScrollViewer>
-		<Grid>
+		<StackPanel>
 			<ItemsControl Items="{Binding ViewModels}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
@@ -55,7 +55,17 @@
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
 			</ItemsControl>
-		</Grid>
+
+			<Button Content="Add Component">
+				<Button.Flyout>
+					<Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
+						<ListBox Items="{Binding AvailableComponents}"
+								 SelectedItem="{Binding SelectedComponentToAdd}">
+						</ListBox>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
+		</StackPanel>
 	</ScrollViewer>
 
 </Window>

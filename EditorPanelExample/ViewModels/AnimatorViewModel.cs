@@ -1,5 +1,6 @@
 ﻿using EditorPanelExample.Models;
 using ReactiveUI;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,13 +12,18 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class AnimatorViewModel : ViewModelBase, ICollapsible
+    public class AnimatorViewModel : ViewModelBase, IMyCollapsible
     {
         private bool _isCollapsed;
 
         private Animator _animator;
         private string _selectedUpdateMode;
         private string _selectedCullingMode;
+
+        public AnimatorViewModel()
+        {
+            _animator = new Animator();
+        }
 
         public AnimatorViewModel(Animator animator)
         {

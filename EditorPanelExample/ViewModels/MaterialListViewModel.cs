@@ -10,11 +10,16 @@ using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class MaterialListViewModel : ViewModelBase, ICollapsible
+    public class MaterialListViewModel : ViewModelBase, IMyCollapsible
     {
         private bool _isCollapsed;
 
         public ObservableCollection<Material> Materials { get; set; }
+
+        public MaterialListViewModel()
+        {
+            Materials = new ObservableCollection<Material>();
+        }
 
         public MaterialListViewModel(MaterialList materialList)
         {

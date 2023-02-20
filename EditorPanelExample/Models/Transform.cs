@@ -12,7 +12,7 @@ namespace EditorPanelExample.Models
         public float Y { get; set; }
         public float Z { get; set; }
 
-        public Transform(float x, float y, float z)
+        public Transform(float x = 0, float y = 0, float z = 0)
         {
             X = x;
             Y = y;
