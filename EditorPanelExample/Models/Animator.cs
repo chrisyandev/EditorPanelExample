@@ -28,7 +28,7 @@ namespace EditorPanelExample.Models
         public UpdateMode CurrentUpdateMode { get; set; }
         public CullingMode CurrentCullingMode { get; set; }
 
-        public Animator(string controller, string avatar, bool applyRootMotion = false,
+        public Animator(string controller = "", string avatar = "", bool applyRootMotion = false,
             UpdateMode currentUpdateMode = UpdateMode.Normal,
             CullingMode currentCullingMode = CullingMode.AlwaysAnimate)
         {

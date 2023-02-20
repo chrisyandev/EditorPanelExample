@@ -1,5 +1,6 @@
 ﻿using EditorPanelExample.Models;
 using ReactiveUI;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class AnimatorViewModel : ViewModelBase, ICollapsible
+    public class AnimatorViewModel : ViewModelBase, IMyCollapsible
     {
         private bool _isCollapsed;
 
@@ -19,23 +20,16 @@ namespace EditorPanelExample.ViewModels
         private string _selectedUpdateMode;
         private string _selectedCullingMode;
 
+        public AnimatorViewModel()
+        {
+            _animator = new Animator();
+            InitializeThisComponent();
+        }
+
         public AnimatorViewModel(Animator animator)
         {
             _animator = animator;
-
-            UpdateModes = new(
-                Enum.GetNames<UpdateMode>()
-                .Select(
-                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
-                ));
-            SelectedUpdateMode = UpdateModes.FirstOrDefault();
-
-            CullingModes = new(
-                Enum.GetNames<CullingMode>()
-                .Select(
-                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
-                ));
-            SelectedCullingMode = CullingModes.FirstOrDefault();
+            InitializeThisComponent();
         }
 
         public string Description { get; } = "Placeholder for description of Animator";
@@ -121,6 +115,23 @@ namespace EditorPanelExample.ViewModels
 
                 Debug.WriteLine(_animator.CurrentCullingMode);
             }
+        }
+
+        private void InitializeThisComponent()
+        {
+            UpdateModes = new(
+                Enum.GetNames<UpdateMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
+            SelectedUpdateMode = UpdateModes.FirstOrDefault();
+
+            CullingModes = new(
+                Enum.GetNames<CullingMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
+            SelectedCullingMode = CullingModes.FirstOrDefault();
         }
 
         public void ToggleCollapse()

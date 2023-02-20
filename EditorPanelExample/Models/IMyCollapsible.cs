@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorPanelExample.Models
 {
-    internal interface ICollapsible
+    internal interface IMyCollapsible
     {
         bool IsCollapsed { get; set; }
 
