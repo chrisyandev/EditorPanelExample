@@ -55,12 +55,12 @@
 					</ItemsPanelTemplate>
 				</ItemsControl.ItemsPanel>
 			</ItemsControl>
-
-			<Button Content="Add Component">
+			
+			<Button Name="addComponentButton" Content="Add Component">
 				<Button.Flyout>
-					<Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
-						<ListBox Items="{Binding AvailableComponents}"
-								 SelectedItem="{Binding SelectedComponentToAdd}">
+					<Flyout Placement="Bottom">
+						<ListBox Name="addComponentListBox" Items="{Binding AvailableComponents}"
+								 Selection="{Binding AddComponentFlyoutSelection}">
 						</ListBox>
 					</Flyout>
 				</Button.Flyout>
