@@ -56,9 +56,19 @@
 				</ItemsControl.ItemsPanel>
 			</ItemsControl>
 			
-			<Button Name="addComponentButton" Content="Add Component">
+			<Button Name="addComponentButton"
+					Content="Add Component"
+					HorizontalAlignment="Center"
+					Margin="5">
+				<Button.Styles>
+					<Style Selector="Button:pointerover /template/ ContentPresenter">
+						<Setter Property="TextBlock.Foreground" Value="White"/>
+						<Setter Property="Background" Value="SlateBlue"/>
+					</Style>
+				</Button.Styles>
+				
 				<Button.Flyout>
-					<Flyout Placement="Bottom">
+					<Flyout Placement="Top">
 						<ListBox Name="addComponentListBox" Items="{Binding AvailableComponents}"
 								 Selection="{Binding AddComponentFlyoutSelection}">
 						</ListBox>
