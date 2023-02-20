@@ -26,6 +26,7 @@ namespace EditorPanelExample.ViewModels
         public MainWindowViewModel()
         {
             ViewModels = new ObservableCollection<ViewModelBase>();
+
             AvailableComponents = new List<string>(_componentNameToTypeMap.Keys);
 
             AddComponentFlyoutSelection = new SelectionModel<string>(AvailableComponents);
@@ -54,8 +55,6 @@ namespace EditorPanelExample.ViewModels
 
         public SelectionModel<string> AddComponentFlyoutSelection { get; }
 
-        public IMainWindow MainWindowView { get; set; }
-
         private void AddComponent(string componentName)
         {
             Type viewModelType = _componentNameToTypeMap[componentName];
@@ -72,7 +71,6 @@ namespace EditorPanelExample.ViewModels
             if (selectedName != null && _componentNameToTypeMap.ContainsKey(selectedName))
             {
                 AddComponent(selectedName);
-                MainWindowView.HideAddComponentFlyout();
             }
             else
             {

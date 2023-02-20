@@ -1,25 +1,27 @@
 using Avalonia.Controls;
+using Avalonia.Controls.Selection;
 using EditorPanelExample.Models;
 using EditorPanelExample.ViewModels;
 
 namespace EditorPanelExample.Views
 {
-    public partial class MainWindow : Window, IMainWindow
+    public partial class MainWindow : Window
     {
         private Button _addComponentButton;
+        private ListBox _addComponentListBox;
 
         public MainWindow()
         {
             InitializeComponent();
 
             _addComponentButton = this.FindControl<Button>("addComponentButton");
+            _addComponentListBox = this.FindControl<ListBox>("addComponentListBox");
+            _addComponentListBox.SelectionChanged += AddComponentListBoxSelectionChanged;
         }
 
-        protected override void OnDataContextEndUpdate()
+        private void AddComponentListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            base.OnDataContextEndUpdate();
-
-            (DataContext as MainWindowViewModel).MainWindowView = this;
+            HideAddComponentFlyout();
         }
 
         public void HideAddComponentFlyout()
