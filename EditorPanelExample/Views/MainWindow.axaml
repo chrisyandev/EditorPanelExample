@@ -46,7 +46,7 @@
 		</Style>
 	</Window.Styles>
 
-	<ScrollViewer>
+	<ScrollViewer Name="mainScrollViewer">
 		<StackPanel>
 			<ItemsControl Items="{Binding ViewModels}">
 				<ItemsControl.ItemsPanel>

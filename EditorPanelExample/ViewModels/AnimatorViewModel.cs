@@ -23,25 +23,13 @@ namespace EditorPanelExample.ViewModels
         public AnimatorViewModel()
         {
             _animator = new Animator();
+            InitializeThisComponent();
         }
 
         public AnimatorViewModel(Animator animator)
         {
             _animator = animator;
-
-            UpdateModes = new(
-                Enum.GetNames<UpdateMode>()
-                .Select(
-                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
-                ));
-            SelectedUpdateMode = UpdateModes.FirstOrDefault();
-
-            CullingModes = new(
-                Enum.GetNames<CullingMode>()
-                .Select(
-                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
-                ));
-            SelectedCullingMode = CullingModes.FirstOrDefault();
+            InitializeThisComponent();
         }
 
         public string Description { get; } = "Placeholder for description of Animator";
@@ -127,6 +115,23 @@ namespace EditorPanelExample.ViewModels
 
                 Debug.WriteLine(_animator.CurrentCullingMode);
             }
+        }
+
+        private void InitializeThisComponent()
+        {
+            UpdateModes = new(
+                Enum.GetNames<UpdateMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
+            SelectedUpdateMode = UpdateModes.FirstOrDefault();
+
+            CullingModes = new(
+                Enum.GetNames<CullingMode>()
+                .Select(
+                    name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
+                ));
+            SelectedCullingMode = CullingModes.FirstOrDefault();
         }
 
         public void ToggleCollapse()
