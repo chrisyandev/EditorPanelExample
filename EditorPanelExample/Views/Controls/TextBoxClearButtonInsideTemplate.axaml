@@ -17,7 +17,7 @@
 					  VerticalAlignment="Center"
 					  VerticalContentAlignment="Center"
 					  HorizontalContentAlignment="Center"
-					  Background="#64676E"
+					  Background="{DynamicResource ShuttleGreyBrush}"
 					  Foreground="White"
 					  CornerRadius="25"
 					  Padding="0"
@@ -26,7 +26,7 @@
 					  Margin="0,0,6,0">
 				  <Button.Styles>
 					  <Style Selector="Button:pointerover /template/ ContentPresenter">
-						  <Setter Property="Background" Value="#383838"/>
+						  <Setter Property="Background" Value="{DynamicResource LacqueredLicoriceBrush}"/>
 						  <Setter Property="TextBlock.Foreground" Value="White" />
 					  </Style>
 

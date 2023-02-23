@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="200"
              x:Class="EditorPanelExample.Views.Controls.TransformControl">
 
-	<Border Background="#383838"
+	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
 			BorderBrush="Black"
 			BorderThickness="0 0 0 2"
 			CornerRadius="0"
@@ -16,7 +16,7 @@
 
 			<Border Grid.Row="1"
 					IsVisible="{Binding !IsCollapsed}"
-					Background="#4A4A4A"
+					Background="{DynamicResource CharcoalBrush}"
 					BorderBrush="Black"
 					BorderThickness="0"
 					CornerRadius="3"
@@ -46,7 +46,7 @@
 						VerticalAlignment="Center"
 						VerticalContentAlignment="Center"
 						HorizontalContentAlignment="Center"
-						Background="#64676E"
+						Background="{DynamicResource ShuttleGreyBrush}"
 						Foreground="White"
 						CornerRadius="25"
 						Padding="0"
@@ -55,7 +55,7 @@
 						Margin="4,0,0,0">
 						<Button.Styles>
 							<Style Selector="Button:pointerover /template/ ContentPresenter">
-								<Setter Property="Background" Value="#383838"/>
+								<Setter Property="Background" Value="{DynamicResource LacqueredLicoriceBrush}"/>
 								<Setter Property="TextBlock.Foreground" Value="White" />
 							</Style>
 

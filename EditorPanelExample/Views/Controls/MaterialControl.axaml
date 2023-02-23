@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="50"
              x:Class="EditorPanelExample.Views.Controls.MaterialControl">
 
-	<Border Background="#383838"
+	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
 			BorderBrush="Black"
 			BorderThickness="0 0 0 2"
 			CornerRadius="0"

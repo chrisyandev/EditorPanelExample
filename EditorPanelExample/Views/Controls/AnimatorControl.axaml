@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
              x:Class="EditorPanelExample.Views.Controls.AnimatorControl">
 
-	<Border Background="#383838"
+	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
 			BorderBrush="Black"
 			BorderThickness="0,0,0,2"
 			CornerRadius="0"
