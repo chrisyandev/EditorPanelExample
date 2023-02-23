@@ -11,4 +11,10 @@
 		<StyleInclude Source="avares://EditorPanelExample/Views/Controls/ComponentHeaderTemplate.axaml" />
 		<StyleInclude Source="avares://EditorPanelExample/Views/Controls/TextBoxClearButtonInsideTemplate.axaml" />
     </Application.Styles>
+
+	<Application.Resources>
+		<SolidColorBrush x:Key="ShuttleGreyBrush">#64676e</SolidColorBrush>
+		<SolidColorBrush x:Key="LacqueredLicoriceBrush">#383838</SolidColorBrush>
+		<SolidColorBrush x:Key="CharcoalBrush">#4a4a4a</SolidColorBrush>
+	</Application.Resources>
 </Application>
