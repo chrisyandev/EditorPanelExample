@@ -12,9 +12,22 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Animator" MyTooltip="{Binding Description}" />
+			<controls:ComponentHeaderTemplate MyTitle="Animator"
+											  MyTooltip="{Binding Description}"
+											  MyContextMenuItems="{Binding ContextMenuItems}" />
 
 			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
+
+				<StackPanel.ContextMenu>
+					<ContextMenu Items="{Binding ContextMenuItems, Converter={StaticResource DebuggerConverter}}">
+						<ContextMenu.ItemTemplate>
+							<DataTemplate>
+								<MenuItem Header="{Binding}" />
+							</DataTemplate>
+						</ContextMenu.ItemTemplate>
+					</ContextMenu>
+				</StackPanel.ContextMenu>
+
 				<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
 					  ColumnDefinitions="Auto,*"
 					  Margin="10,0">
@@ -66,7 +79,7 @@
 								HorizontalAlignment="Stretch" />
 				</Grid>
 			</StackPanel>
-			
+
 		</Grid>
 	</Border>
 

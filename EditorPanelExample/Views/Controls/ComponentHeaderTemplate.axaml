@@ -10,6 +10,19 @@
     <Setter Property="Template">
       <ControlTemplate>
 		  <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
+			  <!--
+			  			  <StackPanel.ContextMenu>
+				  <ContextMenu Items="{TemplateBinding MyContextMenuItems}">
+					  <ContextMenu.ItemTemplate>
+						  <DataTemplate>
+							  <MenuItem Header="{TemplateBinding}" />
+						  </DataTemplate>
+					  </ContextMenu.ItemTemplate>
+				  </ContextMenu>
+			  </StackPanel.ContextMenu>
+			  -->
+
+
 			  <Button Command="{Binding ToggleCollapse}"
 					  HorizontalAlignment="Center"
 					  VerticalAlignment="Center"
