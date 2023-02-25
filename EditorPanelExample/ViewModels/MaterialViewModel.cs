@@ -28,6 +28,13 @@ namespace EditorPanelExample.ViewModels
 
         public string Description { get; } = "Placeholder for description of Material";
 
+        public List<string> ContextMenuItems { get; } = new List<string>()
+        {
+            "Remove Component",
+            "Move Up",
+            "Move Down"
+        };
+
         public bool IsCollapsed 
         {
             get => _isCollapsed;

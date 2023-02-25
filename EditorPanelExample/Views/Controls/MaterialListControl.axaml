@@ -12,7 +12,9 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Material List" MyTooltip="{Binding Description}"/>
+			<controls:ComponentHeaderTemplate MyTitle="Material List"
+											  MyTooltip="{Binding Description}"
+											  MyContextMenuItems="{Binding ContextMenuItems}" />
 
 			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
 				<ItemsControl Items="{Binding Materials}">
