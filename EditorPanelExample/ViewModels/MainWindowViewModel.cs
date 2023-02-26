@@ -3,15 +3,18 @@ using Avalonia.Controls.Selection;
 using Avalonia.Input;
 using DynamicData;
 using EditorPanelExample.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EditorPanelExample.ViewModels
 {
@@ -52,6 +55,8 @@ namespace EditorPanelExample.ViewModels
             foreach (MyComponentBase component in ViewModels)
             {
                 SetRemoveComponentCommand(component);
+                SetMoveUpCommand(component);
+                SetMoveDownCommand(component);
             }
             // =====================
         }
@@ -66,10 +71,11 @@ namespace EditorPanelExample.ViewModels
         {
             Type viewModelType = _componentNameToTypeMap[componentName];
             MyComponentBase newComponent = Activator.CreateInstance(viewModelType) as MyComponentBase;
+            ViewModels.Add(newComponent);
 
             SetRemoveComponentCommand(newComponent);
-
-            ViewModels.Add(newComponent);
+            SetMoveUpCommand(newComponent);
+            SetMoveDownCommand(newComponent);
         }
 
         private void AddComponentFlyoutSelectionChanged(object sender, SelectionModelSelectionChangedEventArgs e)
@@ -93,6 +99,40 @@ namespace EditorPanelExample.ViewModels
             ReactiveCommand<MyComponentBase, Unit> removeComponentCommand =
                 ReactiveCommand.Create<MyComponentBase>(_ => ViewModels.Remove(component));
             component.RemoveComponentCommand = removeComponentCommand;
+        }
+
+        private void SetMoveUpCommand(MyComponentBase component)
+        {
+            ReactiveCommand<MyComponentBase, Unit> moveUpCommand =
+                ReactiveCommand.Create<MyComponentBase>(_ =>
+                {
+                    int currentIndex = ViewModels.IndexOf(component);
+                    int previousIndex = currentIndex - 1;
+                    if (previousIndex >= 0)
+                    {
+                        MyComponentBase temp = ViewModels[previousIndex];
+                        ViewModels[previousIndex] = ViewModels[currentIndex];
+                        ViewModels[currentIndex] = temp;
+                    }
+                });
+            component.MoveUpCommand = moveUpCommand;
+        }
+
+        private void SetMoveDownCommand(MyComponentBase component)
+        {
+            ReactiveCommand<MyComponentBase, Unit> moveDownCommand =
+                ReactiveCommand.Create<MyComponentBase>(_ =>
+                {
+                    int currentIndex = ViewModels.IndexOf(component);
+                    int nextIndex = currentIndex + 1;
+                    if (nextIndex < ViewModels.Count)
+                    {
+                        MyComponentBase temp = ViewModels[nextIndex];
+                        ViewModels[nextIndex] = ViewModels[currentIndex];
+                        ViewModels[currentIndex] = temp;
+                    }
+                });
+            component.MoveDownCommand = moveDownCommand;
         }
     }
 }

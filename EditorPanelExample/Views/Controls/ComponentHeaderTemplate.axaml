@@ -13,8 +13,8 @@
 			  <StackPanel.ContextMenu>
 				  <ContextMenu>
 					  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
-					  <MenuItem Header="Move Up" />
-					  <MenuItem Header="Move Down" />
+					  <MenuItem Header="Move Up" Command="{Binding MoveUpCommand}" />
+					  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
 				  </ContextMenu>
 			  </StackPanel.ContextMenu>
 

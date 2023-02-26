@@ -34,6 +34,10 @@ namespace EditorPanelExample.ViewModels
 
         public override ICommand RemoveComponentCommand { get; set; }
 
+        public override ICommand MoveUpCommand { get; set; }
+
+        public override ICommand MoveDownCommand { get; set; }
+
         public override bool IsCollapsed
         {
             get => _isCollapsed;
