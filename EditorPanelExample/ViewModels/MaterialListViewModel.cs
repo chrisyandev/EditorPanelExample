@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using EditorPanelExample.Models;
 using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class MaterialListViewModel : ViewModelBase, IMyCollapsible
+    public class MaterialListViewModel : MyComponentBase
     {
         private bool _isCollapsed;
 
@@ -35,7 +32,9 @@ namespace EditorPanelExample.ViewModels
             "Move Down"
         };
 
-        public bool IsCollapsed
+        public override ICommand RemoveComponentCommand { get; set; }
+
+        public override bool IsCollapsed
         {
             get => _isCollapsed;
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
@@ -51,7 +50,7 @@ namespace EditorPanelExample.ViewModels
             Materials.Remove(material);
         }
 
-        public void ToggleCollapse()
+        public override void ToggleCollapse()
         {
             IsCollapsed = !IsCollapsed;
         }

@@ -1,6 +1,5 @@
 ﻿using EditorPanelExample.Models;
 using ReactiveUI;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class AnimatorViewModel : ViewModelBase, IMyCollapsible
+    public class AnimatorViewModel : MyComponentBase
     {
         private bool _isCollapsed;
 
@@ -41,7 +41,9 @@ namespace EditorPanelExample.ViewModels
             "Move Down"
         };
 
-        public bool IsCollapsed
+        public override ICommand RemoveComponentCommand { get; set; }
+
+        public override bool IsCollapsed
         {
             get => _isCollapsed;
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
@@ -141,7 +143,7 @@ namespace EditorPanelExample.ViewModels
             SelectedCullingMode = CullingModes.FirstOrDefault();
         }
 
-        public void ToggleCollapse()
+        public override void ToggleCollapse()
         {
             IsCollapsed = !IsCollapsed;
         }

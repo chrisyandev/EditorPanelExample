@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Text;
 
 namespace EditorPanelExample.ViewModels
@@ -25,7 +27,7 @@ namespace EditorPanelExample.ViewModels
 
         public MainWindowViewModel()
         {
-            ViewModels = new ObservableCollection<ViewModelBase>();
+            ViewModels = new ObservableCollection<MyComponentBase>();
 
             AvailableComponents = new List<string>(_componentNameToTypeMap.Keys);
 
@@ -46,10 +48,15 @@ namespace EditorPanelExample.ViewModels
             ViewModels.Add(new TransformViewModel(new Transform(24, 30, 55)));
 
             ViewModels.Add(new AnimatorViewModel(new Animator("KnightController.controller", "knightAvatar")));
+
+            foreach (MyComponentBase component in ViewModels)
+            {
+                SetRemoveComponentCommand(component);
+            }
             // =====================
         }
 
-        public ObservableCollection<ViewModelBase> ViewModels { get; }
+        public ObservableCollection<MyComponentBase> ViewModels { get; }
 
         public List<string> AvailableComponents { get; }
 
@@ -58,8 +65,11 @@ namespace EditorPanelExample.ViewModels
         private void AddComponent(string componentName)
         {
             Type viewModelType = _componentNameToTypeMap[componentName];
-            ViewModelBase newVM = Activator.CreateInstance(viewModelType) as ViewModelBase;
-            ViewModels.Add(newVM);
+            MyComponentBase newComponent = Activator.CreateInstance(viewModelType) as MyComponentBase;
+
+            SetRemoveComponentCommand(newComponent);
+
+            ViewModels.Add(newComponent);
         }
 
         private void AddComponentFlyoutSelectionChanged(object sender, SelectionModelSelectionChangedEventArgs e)
@@ -76,6 +86,13 @@ namespace EditorPanelExample.ViewModels
             {
                 Debug.WriteLine("Could not create component");
             }
+        }
+
+        private void SetRemoveComponentCommand(MyComponentBase component)
+        {
+            ReactiveCommand<MyComponentBase, Unit> removeComponentCommand =
+                ReactiveCommand.Create<MyComponentBase>(_ => ViewModels.Remove(component));
+            component.RemoveComponentCommand = removeComponentCommand;
         }
     }
 }

@@ -4,6 +4,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace EditorPanelExample.Views.Controls
 {
@@ -15,9 +16,6 @@ namespace EditorPanelExample.Views.Controls
         public static readonly StyledProperty<string> MyTooltipProperty =
             AvaloniaProperty.Register<ComponentHeaderTemplate, string>(nameof(MyTooltip), $"<{nameof(MyTooltip)}>");
 
-        public static readonly StyledProperty<List<string>> MyContextMenuItemsProperty =
-            AvaloniaProperty.Register<ComponentHeaderTemplate, List<string>>(nameof(MyContextMenuItems));
-
         public string MyTitle
         {
             get => GetValue(MyTitleProperty);
@@ -28,12 +26,6 @@ namespace EditorPanelExample.Views.Controls
         {
             get => GetValue(MyTooltipProperty);
             set => SetValue(MyTooltipProperty, value);
-        }
-
-        public List<string> MyContextMenuItems
-        {
-            get => GetValue(MyContextMenuItemsProperty);
-            set => SetValue(MyContextMenuItemsProperty, value);
         }
     }
 }

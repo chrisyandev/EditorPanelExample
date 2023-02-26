@@ -10,7 +10,7 @@ using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
 {
-    public class MaterialViewModel : ViewModelBase, IMyCollapsible
+    public class MaterialViewModel : MyComponentBase
     {
         private bool _isCollapsed;
 
@@ -35,7 +35,9 @@ namespace EditorPanelExample.ViewModels
             "Move Down"
         };
 
-        public bool IsCollapsed 
+        public override ICommand RemoveComponentCommand { get; set; }
+
+        public override bool IsCollapsed 
         {
             get => _isCollapsed;
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
@@ -59,7 +61,7 @@ namespace EditorPanelExample.ViewModels
             Material = "";
         }
 
-        public void ToggleCollapse()
+        public override void ToggleCollapse()
         {
             IsCollapsed = !IsCollapsed;
         }

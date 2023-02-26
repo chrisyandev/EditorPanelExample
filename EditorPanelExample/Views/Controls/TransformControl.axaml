@@ -12,9 +12,7 @@
 			CornerRadius="0"
 			Padding="4">
 		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Transform"
-											  MyTooltip="{Binding Description}"
-											  MyContextMenuItems="{Binding ContextMenuItems}" />
+			<controls:ComponentHeaderTemplate MyTitle="Transform" MyTooltip="{Binding Description}" />
 
 			<Border Grid.Row="1"
 					IsVisible="{Binding !IsCollapsed}"

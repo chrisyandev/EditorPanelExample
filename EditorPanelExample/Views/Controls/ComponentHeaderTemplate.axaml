@@ -10,15 +10,11 @@
     <Setter Property="Template">
       <ControlTemplate>
 		  <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
-
 			  <StackPanel.ContextMenu>
-				  <!-- TemplateBinding doesn't work. Must match Binding name with original source. -->
-				  <ContextMenu Items="{Binding ContextMenuItems}">
-					  <ContextMenu.ItemTemplate>
-						  <DataTemplate>
-							  <MenuItem Header="{Binding}" />
-						  </DataTemplate>
-					  </ContextMenu.ItemTemplate>
+				  <ContextMenu>
+					  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
+					  <MenuItem Header="Move Up" />
+					  <MenuItem Header="Move Down" />
 				  </ContextMenu>
 			  </StackPanel.ContextMenu>
 
