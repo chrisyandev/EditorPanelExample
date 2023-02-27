@@ -10,13 +10,6 @@
     <Setter Property="Template">
       <ControlTemplate>
 		  <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
-			  <Grid.ContextMenu>
-				  <ContextMenu Name="componentContextMenu">
-					  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
-					  <MenuItem Header="Move Up" Command="{Binding MoveUpCommand}" />
-					  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
-				  </ContextMenu>
-			  </Grid.ContextMenu>
 
 			  <Button Grid.Column="0"
 					  Command="{Binding ToggleCollapse}"
@@ -36,7 +29,30 @@
 				  </Panel>
 			  </Button>
 
-			  <TextBlock Grid.Column="1" Classes="controlTitle" ToolTip.Tip="{TemplateBinding MyTooltip}" Text="{TemplateBinding MyTitle}" />
+			  <Button Grid.Column="1"
+					  ToolTip.Tip="{TemplateBinding MyTooltip}"
+					  Content="{TemplateBinding MyTitle}"
+					  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+					  FontSize="12" FontWeight="Bold"
+					  Foreground="White" Background="Transparent"
+					  Padding="0">
+				  <Button.Styles>
+					  <Style Selector="Button:pointerover /template/ ContentPresenter">
+						  <Setter Property="TextBlock.Foreground" Value="White" />
+					  </Style>
+					  <Style Selector="Button:pressed /template/ ContentPresenter">
+						  <Setter Property="TextBlock.Foreground" Value="White" />
+					  </Style>
+				  </Button.Styles>
+				  
+				  <Button.ContextMenu>
+					  <ContextMenu Name="componentContextMenu">
+						  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
+						  <MenuItem Header="Move Up" Command="{Binding MoveUpCommand}" />
+						  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
+					  </ContextMenu>
+				  </Button.ContextMenu>
+			  </Button>
 
 			  <Button Grid.Column="2"
 					  Name="contextMenuButton"
