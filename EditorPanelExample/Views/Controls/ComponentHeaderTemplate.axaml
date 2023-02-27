@@ -9,22 +9,23 @@
     <!-- Set Defaults -->
     <Setter Property="Template">
       <ControlTemplate>
-		  <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5">
-			  <StackPanel.ContextMenu>
-				  <ContextMenu>
+		  <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+			  <Grid.ContextMenu>
+				  <ContextMenu Name="componentContextMenu">
 					  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
 					  <MenuItem Header="Move Up" Command="{Binding MoveUpCommand}" />
 					  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
 				  </ContextMenu>
-			  </StackPanel.ContextMenu>
+			  </Grid.ContextMenu>
 
-			  <Button Command="{Binding ToggleCollapse}"
+			  <Button Grid.Column="0"
+					  Command="{Binding ToggleCollapse}"
 					  HorizontalAlignment="Center"
 					  VerticalAlignment="Center"
 					  HorizontalContentAlignment="Center"
 					  VerticalContentAlignment="Center"
 					  Width="18" Height="18"
-					  Padding="0">
+					  Padding="0" Margin="0,0,5,0">
 				  <Panel>
 					  <Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
 							 IsVisible="{Binding !IsCollapsed}"
@@ -35,8 +36,18 @@
 				  </Panel>
 			  </Button>
 
-			  <TextBlock Classes="controlTitle" ToolTip.Tip="{TemplateBinding MyTooltip}" Text="{TemplateBinding MyTitle}" />
-		  </StackPanel>
+			  <TextBlock Grid.Column="1" Classes="controlTitle" ToolTip.Tip="{TemplateBinding MyTooltip}" Text="{TemplateBinding MyTitle}" />
+
+			  <Button Grid.Column="2"
+					  Name="contextMenuButton"
+					  Command="{TemplateBinding OpenContextMenuCommand}"
+					  Width="18" Height="18"
+					  Padding="0" Margin="5,0,0,0"
+					  Background="Transparent">
+				  <Image Source="avares://EditorPanelExample/Assets/kebab-white.png"
+						 Width="12" Height="12" />
+			  </Button>
+		  </Grid>
       </ControlTemplate>
     </Setter>
   </Style>
