@@ -30,7 +30,8 @@
 				  </Panel>
 			  </Button>
 
-			  <Button Grid.Column="1"
+			  <controls:ComponentTitleButton Grid.Column="1"
+					  Name="componentTitleButton"
 					  ToolTip.Tip="{TemplateBinding MyTooltip}"
 					  Content="{TemplateBinding MyTitle}"
 					  HorizontalAlignment="Stretch"
@@ -46,7 +47,7 @@
 						  <Setter Property="TextBlock.Foreground" Value="White" />
 					  </Style>
 				  </Button.Styles>
-				  
+
 				  <Button.ContextMenu>
 					  <ContextMenu Name="componentContextMenu">
 						  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
@@ -54,7 +55,7 @@
 						  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
 					  </ContextMenu>
 				  </Button.ContextMenu>
-			  </Button>
+			  </controls:ComponentTitleButton>
 
 			  <Button Grid.Column="2"
 					  Name="contextMenuButton"

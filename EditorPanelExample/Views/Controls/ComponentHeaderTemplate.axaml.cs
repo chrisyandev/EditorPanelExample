@@ -2,6 +2,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using EditorPanelExample.ViewModels;
 using ReactiveUI;
 using System.Collections.Generic;
@@ -49,6 +51,7 @@ namespace EditorPanelExample.Views.Controls
         {
             base.OnApplyTemplate(e);
 
+            #region Set Up Context Menu Button
             ContextMenu componentContextMenu = e.NameScope.Find<ContextMenu>("componentContextMenu");
             Button contextMenuButton = e.NameScope.Find<Button>("contextMenuButton");
 
@@ -62,6 +65,32 @@ namespace EditorPanelExample.Views.Controls
                     }
                 });
             OpenContextMenuCommand = openContextMenuCommand;
+            #endregion
+
+            _componentTitleButton = e.NameScope.Find<ComponentTitleButton>("componentTitleButton");
+            Debug.WriteLine(_componentTitleButton);
+
+            _componentTitleButton.ComponentTitleButtonMouseDown += PointerPressedHandler;
+            _componentTitleButton.ComponentTitleButtonMouseUp += PointerReleasedHandler;
+        }
+
+        private ComponentTitleButton _componentTitleButton;
+
+        private void PointerMovedHandler(object sender, PointerEventArgs e)
+        {
+            Debug.WriteLine("pointer moved");
+        }
+
+        private void PointerPressedHandler(object sender, PointerPressedEventArgs e)
+        {
+            Debug.WriteLine("pointer pressed");
+            _componentTitleButton.PointerMoved += PointerMovedHandler;
+        }
+
+        private void PointerReleasedHandler(object sender, PointerReleasedEventArgs e)
+        {
+            Debug.WriteLine("pointer released");
+            _componentTitleButton.PointerMoved -= PointerMovedHandler;
         }
     }
 }
