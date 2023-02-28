@@ -18,7 +18,8 @@
 					  HorizontalContentAlignment="Center"
 					  VerticalContentAlignment="Center"
 					  Width="18" Height="18"
-					  Padding="0" Margin="0,0,5,0">
+					  Padding="0" Margin="0,0,5,0"
+					  Background="Transparent">
 				  <Panel>
 					  <Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
 							 IsVisible="{Binding !IsCollapsed}"
@@ -32,9 +33,10 @@
 			  <Button Grid.Column="1"
 					  ToolTip.Tip="{TemplateBinding MyTooltip}"
 					  Content="{TemplateBinding MyTitle}"
-					  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+					  HorizontalAlignment="Stretch"
+					  VerticalAlignment="Center"
 					  FontSize="12" FontWeight="Bold"
-					  Foreground="White" Background="Transparent"
+					  Background="Transparent"
 					  Padding="0">
 				  <Button.Styles>
 					  <Style Selector="Button:pointerover /template/ ContentPresenter">
