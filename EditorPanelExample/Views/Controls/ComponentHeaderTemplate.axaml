@@ -30,15 +30,17 @@
 				  </Panel>
 			  </Button>
 
-			  <controls:ComponentTitleButton Grid.Column="1"
-					  Name="componentTitleButton"
-					  ToolTip.Tip="{TemplateBinding MyTooltip}"
-					  Content="{TemplateBinding MyTitle}"
-					  HorizontalAlignment="Stretch"
-					  VerticalAlignment="Center"
-					  FontSize="12" FontWeight="Bold"
-					  Background="Transparent"
-					  Padding="0">
+			  <controls:ComponentTitleButton
+					Grid.Column="1"
+					DragDrop.AllowDrop="True"
+					Name="componentTitleButton"
+					ToolTip.Tip="{TemplateBinding MyTooltip}"
+					Content="{TemplateBinding MyTitle}"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Center"
+					FontSize="12" FontWeight="Bold"
+					Background="Transparent"
+					Padding="0">
 				  <Button.Styles>
 					  <Style Selector="Button:pointerover /template/ ContentPresenter">
 						  <Setter Property="TextBlock.Foreground" Value="White" />

@@ -11,63 +11,58 @@
 			BorderThickness="0,0,0,2"
 			CornerRadius="0"
 			Padding="4">
-		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Animator" MyTooltip="{Binding Description}" />
+		<StackPanel IsVisible="{Binding !IsCollapsed}">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+					ColumnDefinitions="Auto,*"
+					Margin="10,0">
+				<Grid.Styles>
+					<Style Selector="TextBlock">
+						<Setter Property="HorizontalAlignment" Value="Left" />
+						<Setter Property="VerticalAlignment" Value="Center" />
+						<Setter Property="Margin" Value="0,0,10,0" />
+					</Style>
+				</Grid.Styles>
 
-			<StackPanel Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
-				<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-					  ColumnDefinitions="Auto,*"
-					  Margin="10,0">
-					<Grid.Styles>
-						<Style Selector="TextBlock">
-							<Setter Property="HorizontalAlignment" Value="Left" />
-							<Setter Property="VerticalAlignment" Value="Center" />
-							<Setter Property="Margin" Value="0,0,10,0" />
-						</Style>
-					</Grid.Styles>
+				<TextBlock Grid.Row="0" Grid.Column="0" Foreground="White">Controller</TextBlock>
+				<TextBlock Grid.Row="1" Grid.Column="0" Foreground="White">Avatar</TextBlock>
 
-					<TextBlock Grid.Row="0" Grid.Column="0" Foreground="White">Controller</TextBlock>
-					<TextBlock Grid.Row="1" Grid.Column="0" Foreground="White">Avatar</TextBlock>
+				<controls:TextBoxClearButtonInsideTemplate
+					Grid.Row="0" Grid.Column="1"
+					MyText="{Binding Controller}"
+					MyClearCommand="{Binding ClearController}" />
 
-					<controls:TextBoxClearButtonInsideTemplate
-						Grid.Row="0" Grid.Column="1"
-						MyText="{Binding Controller}"
-						MyClearCommand="{Binding ClearController}" />
+				<controls:TextBoxClearButtonInsideTemplate
+					Grid.Row="1" Grid.Column="1"
+					MyText="{Binding Avatar}"
+					MyClearCommand="{Binding ClearAvatar}" />
 
-					<controls:TextBoxClearButtonInsideTemplate
-						Grid.Row="1" Grid.Column="1"
-						MyText="{Binding Avatar}"
-						MyClearCommand="{Binding ClearAvatar}" />
+				<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+					<TextBlock VerticalAlignment="Center"
+								Foreground="White">
+						Apply Root Motion
+					</TextBlock>
+					<CheckBox IsChecked="{Binding ApplyRootMotion}" Foreground="White">
+						<CheckBox.Styles>
+							<Style Selector="CheckBox:pointerover /template/ ContentPresenter">
+								<Setter Property="TextBlock.Foreground" Value="White"/>
+							</Style>
+						</CheckBox.Styles>
+					</CheckBox>
+				</StackPanel>
 
-					<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-						<TextBlock VerticalAlignment="Center"
-								   Foreground="White">
-							Apply Root Motion
-						</TextBlock>
-						<CheckBox IsChecked="{Binding ApplyRootMotion}" Foreground="White">
-							<CheckBox.Styles>
-								<Style Selector="CheckBox:pointerover /template/ ContentPresenter">
-									<Setter Property="TextBlock.Foreground" Value="White"/>
-								</Style>
-							</CheckBox.Styles>
-						</CheckBox>
-					</StackPanel>
+				<TextBlock Grid.Row="3" Grid.Column="0" Foreground="White">Update Mode</TextBlock>
+				<TextBlock Grid.Row="4" Grid.Column="0" Foreground="White">Culling Mode</TextBlock>
 
-					<TextBlock Grid.Row="3" Grid.Column="0" Foreground="White">Update Mode</TextBlock>
-					<TextBlock Grid.Row="4" Grid.Column="0" Foreground="White">Culling Mode</TextBlock>
-
-					<ComboBox Grid.Row="3" Grid.Column="1"
-								Items="{Binding UpdateModes}"
-								SelectedItem="{Binding SelectedUpdateMode}"
-								HorizontalAlignment="Stretch" />
-					<ComboBox Grid.Row="4" Grid.Column="1"
-								Items="{Binding CullingModes}"
-								SelectedItem="{Binding SelectedCullingMode}"
-								HorizontalAlignment="Stretch" />
-				</Grid>
-			</StackPanel>
-
-		</Grid>
+				<ComboBox Grid.Row="3" Grid.Column="1"
+							Items="{Binding UpdateModes}"
+							SelectedItem="{Binding SelectedUpdateMode}"
+							HorizontalAlignment="Stretch" />
+				<ComboBox Grid.Row="4" Grid.Column="1"
+							Items="{Binding CullingModes}"
+							SelectedItem="{Binding SelectedCullingMode}"
+							HorizontalAlignment="Stretch" />
+			</Grid>
+		</StackPanel>
 	</Border>
 
 </UserControl>

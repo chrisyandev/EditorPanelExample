@@ -6,8 +6,10 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using EditorPanelExample.ViewModels;
 using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reactive;
 using System.Windows.Input;
 
@@ -33,7 +35,7 @@ namespace EditorPanelExample.Views.Controls
             set => SetValue(MyTooltipProperty, value);
         }
 
-
+        #region Context Menu Properties
         public static readonly DirectProperty<ComponentHeaderTemplate, ICommand> OpenContextMenuCommandProperty =
             AvaloniaProperty.RegisterDirect<ComponentHeaderTemplate, ICommand>(
                 nameof(OpenContextMenuCommand),
@@ -46,6 +48,20 @@ namespace EditorPanelExample.Views.Controls
             get => _openContextMenuCommand;
             private set => SetAndRaise(OpenContextMenuCommandProperty, ref _openContextMenuCommand, value);
         }
+        #endregion
+
+        #region Drag Component Properties
+        private ComponentTitleButton _componentTitleButton;
+
+        public static readonly StyledProperty<ICommand> MyInsertComponentCommandProperty =
+            AvaloniaProperty.Register<ComponentHeaderTemplate, ICommand>(nameof(MyInsertComponentCommand));
+
+        public ICommand MyInsertComponentCommand
+        {
+            get => GetValue(MyInsertComponentCommandProperty);
+            set => SetValue(MyInsertComponentCommandProperty, value);
+        }
+        #endregion
 
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
@@ -67,30 +83,50 @@ namespace EditorPanelExample.Views.Controls
             OpenContextMenuCommand = openContextMenuCommand;
             #endregion
 
+            #region Set Up Drag Component
             _componentTitleButton = e.NameScope.Find<ComponentTitleButton>("componentTitleButton");
-            Debug.WriteLine(_componentTitleButton);
-
-            _componentTitleButton.ComponentTitleButtonMouseDown += PointerPressedHandler;
-            _componentTitleButton.ComponentTitleButtonMouseUp += PointerReleasedHandler;
+            _componentTitleButton.ComponentTitleButtonMouseDown += DoDrag;
+            _componentTitleButton.AddHandler(DragDrop.DropEvent, Drop);
+            _componentTitleButton.AddHandler(DragDrop.DragOverEvent, DragOver);
+            #endregion
         }
 
-        private ComponentTitleButton _componentTitleButton;
-
-        private void PointerMovedHandler(object sender, PointerEventArgs e)
+        private async void DoDrag(object sender, PointerPressedEventArgs e)
         {
-            Debug.WriteLine("pointer moved");
+            Debug.WriteLine("Drag Start");
+
+            var dragData = new DataObject();
+
+            if (sender is ComponentTitleButton button)
+            {
+                dragData.Set("SourceComponent", button.DataContext);
+            }
+
+            var result = await DragDrop.DoDragDrop(e, dragData, DragDropEffects.Copy | DragDropEffects.Move | DragDropEffects.Link);
+            Debug.WriteLine(result);
         }
 
-        private void PointerPressedHandler(object sender, PointerPressedEventArgs e)
+        private void DragOver(object? sender, DragEventArgs e)
         {
-            Debug.WriteLine("pointer pressed");
-            _componentTitleButton.PointerMoved += PointerMovedHandler;
+            e.DragEffects = DragDropEffects.Move;
         }
 
-        private void PointerReleasedHandler(object sender, PointerReleasedEventArgs e)
+        private void Drop(object? sender, DragEventArgs e)
         {
-            Debug.WriteLine("pointer released");
-            _componentTitleButton.PointerMoved -= PointerMovedHandler;
+            Debug.WriteLine("Drag End");
+
+            e.DragEffects = DragDropEffects.Move;
+
+            if (sender is ComponentTitleButton button)
+            {
+                MyComponentBase targetComponent = button.DataContext as MyComponentBase;
+                Debug.WriteLine($"Target: {targetComponent}");
+
+                MyComponentBase sourceComponent = e.Data.Get("SourceComponent") as MyComponentBase;
+                Debug.WriteLine($"Source: {sourceComponent}");
+
+                MyInsertComponentCommand.Execute(Tuple.Create(targetComponent, sourceComponent));
+            }
         }
     }
 }

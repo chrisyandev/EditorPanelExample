@@ -11,15 +11,11 @@
 			BorderThickness="0 0 0 2"
 			CornerRadius="0"
 			Padding="4">
-		<Grid RowDefinitions="20, Auto">
-			<controls:ComponentHeaderTemplate MyTitle="Material" MyTooltip="{Binding Description}" />
-
-			<Grid Grid.Row="1" IsVisible="{Binding !IsCollapsed}">
-				<controls:TextBoxClearButtonInsideTemplate
-					MyText="{Binding Material}"
-					MyClearCommand="{Binding ClearMaterial}" />
-			</Grid>
-		</Grid>
+		<StackPanel IsVisible="{Binding !IsCollapsed}">
+			<controls:TextBoxClearButtonInsideTemplate
+				MyText="{Binding Material}"
+				MyClearCommand="{Binding ClearMaterial}" />
+		</StackPanel>
 	</Border>
 
 </UserControl>
