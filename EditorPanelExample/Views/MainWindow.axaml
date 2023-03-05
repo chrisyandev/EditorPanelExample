@@ -17,43 +17,55 @@
 
 	<Window.DataTemplates>
 		<DataTemplate DataType="{x:Type vm:MaterialViewModel}">
-			<StackPanel>
-				<controls:ComponentHeaderTemplate
-					MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
-					MyTitle="Material"
-					MyTooltip="{Binding Description}" />
-				<controls:MaterialControl DataContext="{Binding}" />
-			</StackPanel>
+			<Border>
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Material"
+						MyTooltip="{Binding Description}" />
+					<controls:MaterialControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:MaterialListViewModel}">
-			<StackPanel>
-				<controls:ComponentHeaderTemplate
-					MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
-					MyTitle="Material List"
-					MyTooltip="{Binding Description}" />
-				<controls:MaterialListControl DataContext="{Binding}" />
-			</StackPanel>
+			<Border>
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Material List"
+						MyTooltip="{Binding Description}" />
+					<controls:MaterialListControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:TransformViewModel}">
-			<StackPanel>
-				<controls:ComponentHeaderTemplate
-					MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
-					MyTitle="Transform"
-					MyTooltip="{Binding Description}" />
-				<controls:TransformControl DataContext="{Binding}" />
-			</StackPanel>
+			<Border BorderThickness="0,0,0,0">
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Transform"
+						MyTooltip="{Binding Description}" />
+					<controls:TransformControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:AnimatorViewModel}">
-			<StackPanel>
-				<controls:ComponentHeaderTemplate
-					MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
-					MyTitle="Animator"
-					MyTooltip="{Binding Description}" />
-				<controls:AnimatorControl DataContext="{Binding}" />
-			</StackPanel>
+			<Border BorderThickness="0,0,0,0">
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Animator"
+						MyTooltip="{Binding Description}" />
+					<controls:AnimatorControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 	</Window.DataTemplates>
 

@@ -61,6 +61,29 @@ namespace EditorPanelExample.ViewModels
                 });
             InsertComponentCommand = insertComponentCommand;
 
+            ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> getDragDirectionCommand
+                = ReactiveCommand.Create<Tuple<MyComponentBase, MyComponentBase>, string>(_ =>
+                {
+                    (MyComponentBase target, MyComponentBase source) = _;
+
+                    int indexOfSource = ViewModels.IndexOf(source);
+                    int indexOfTarget = ViewModels.IndexOf(target);
+
+                    if (indexOfSource < indexOfTarget)
+                    {
+                        return "down";
+                    }
+                    else if (indexOfSource > indexOfTarget)
+                    {
+                        return "up";
+                    }
+                    else
+                    {
+                        return "none";
+                    }
+                });
+            GetDragDirectionCommand = getDragDirectionCommand;
+
 
             // ===== Mock Data =====
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
@@ -162,5 +185,6 @@ namespace EditorPanelExample.ViewModels
         }
 
         public ICommand InsertComponentCommand { get; set; }
+        public ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> GetDragDirectionCommand { get; set; }
     }
 }

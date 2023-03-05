@@ -4,6 +4,9 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
+using Avalonia.Media;
+using Avalonia.VisualTree;
 using EditorPanelExample.ViewModels;
 using ReactiveUI;
 using System;
@@ -61,6 +64,15 @@ namespace EditorPanelExample.Views.Controls
             get => GetValue(MyInsertComponentCommandProperty);
             set => SetValue(MyInsertComponentCommandProperty, value);
         }
+
+        public static readonly StyledProperty<ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string>> MyGetDragDirectionCommandProperty =
+            AvaloniaProperty.Register<ComponentHeaderTemplate, ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string>>(nameof(MyGetDragDirectionCommand));
+
+        public ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> MyGetDragDirectionCommand
+        {
+            get => GetValue(MyGetDragDirectionCommandProperty);
+            set => SetValue(MyGetDragDirectionCommandProperty, value);
+        }
         #endregion
 
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -87,28 +99,62 @@ namespace EditorPanelExample.Views.Controls
             _componentTitleButton = e.NameScope.Find<ComponentTitleButton>("componentTitleButton");
             _componentTitleButton.ComponentTitleButtonMouseDown += DoDrag;
             _componentTitleButton.AddHandler(DragDrop.DropEvent, Drop);
-            _componentTitleButton.AddHandler(DragDrop.DragOverEvent, DragOver);
+            _componentTitleButton.AddHandler(DragDrop.DragEnterEvent, DragEnter);
             #endregion
+        }
+
+        private void DragEnter(object sender, DragEventArgs e)
+        {
+            Debug.WriteLine("Drag Enter");
+
+            if (sender is ComponentTitleButton enteredButton)
+            {
+                Border currentBorder = enteredButton.FindAncestorOfType<Border>();
+                Border lastBorder = (e.Data.Get("LastBorder") as Border[])[0];
+
+                if (currentBorder == lastBorder)
+                {
+                    string currentDragDirection = (e.Data.Get("DragDirection") as string[])[0];
+                    PaintBorder(currentBorder, Brushes.LightBlue, currentDragDirection);
+                }
+                else
+                {
+                    MyComponentBase targetComponent = enteredButton.DataContext as MyComponentBase;
+                    MyComponentBase sourceComponent = e.Data.Get("SourceComponent") as MyComponentBase;
+
+                    MyGetDragDirectionCommand.Execute(Tuple.Create(targetComponent, sourceComponent)).Subscribe(dragDirection =>
+                    {
+                        PaintBorder(currentBorder, Brushes.LightBlue, dragDirection);
+
+                        lastBorder.BorderThickness = new Thickness(0, 0, 0, 0);
+                        (e.Data.Get("LastBorder") as Border[])[0] = currentBorder;
+                        (e.Data.Get("DragDirection") as string[])[0] = dragDirection;
+                    });
+                }
+            }
         }
 
         private async void DoDrag(object sender, PointerPressedEventArgs e)
         {
             Debug.WriteLine("Drag Start");
 
-            var dragData = new DataObject();
+            DataObject dragData = new DataObject();
 
             if (sender is ComponentTitleButton button)
             {
                 dragData.Set("SourceComponent", button.DataContext);
+                // Use array for data that needs to be modified during drag
+                dragData.Set("LastBorder", new Border[] { button.FindAncestorOfType<Border>() });
+                dragData.Set("DragDirection", new string[] { "none" });
             }
 
-            var result = await DragDrop.DoDragDrop(e, dragData, DragDropEffects.Copy | DragDropEffects.Move | DragDropEffects.Link);
-            Debug.WriteLine(result);
-        }
+            DragDropEffects result = await DragDrop.DoDragDrop(e, dragData, DragDropEffects.Move);
 
-        private void DragOver(object? sender, DragEventArgs e)
-        {
-            e.DragEffects = DragDropEffects.Move;
+            if (result == DragDropEffects.None)
+            {
+                Border lastBorder = (dragData.Get("LastBorder") as Border[])[0];
+                lastBorder.BorderThickness = new Thickness(0, 0, 0, 0);
+            }
         }
 
         private void Drop(object? sender, DragEventArgs e)
@@ -126,6 +172,27 @@ namespace EditorPanelExample.Views.Controls
                 Debug.WriteLine($"Source: {sourceComponent}");
 
                 MyInsertComponentCommand.Execute(Tuple.Create(targetComponent, sourceComponent));
+
+                Border lastBorder = (e.Data.Get("LastBorder") as Border[])[0];
+                lastBorder.BorderThickness = new Thickness(0, 0, 0, 0);
+            }
+        }
+
+        private void PaintBorder(Border border, ISolidColorBrush brush, string dragDirection)
+        {
+            border.BorderBrush = brush;
+
+            if (dragDirection == "up")
+            {
+                border.BorderThickness = new Thickness(0, 2, 0, 0);
+            }
+            else if (dragDirection == "down")
+            {
+                border.BorderThickness = new Thickness(0, 0, 0, 2);
+            }
+            else
+            {
+                border.BorderThickness = new Thickness(0, 2, 0, 0);
             }
         }
     }
