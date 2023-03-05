@@ -9,7 +9,7 @@
     <!-- Set Defaults -->
     <Setter Property="Template">
       <ControlTemplate>
-		  <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+		  <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="4,8,4,0">
 
 			  <Button Grid.Column="0"
 					  Command="{Binding ToggleCollapse}"
@@ -18,7 +18,8 @@
 					  HorizontalContentAlignment="Center"
 					  VerticalContentAlignment="Center"
 					  Width="18" Height="18"
-					  Padding="0" Margin="0,0,5,0">
+					  Padding="0" Margin="0,0,5,0"
+					  Background="Transparent">
 				  <Panel>
 					  <Image Source="avares://EditorPanelExample/Assets/arrow-down.png"
 							 IsVisible="{Binding !IsCollapsed}"
@@ -29,13 +30,17 @@
 				  </Panel>
 			  </Button>
 
-			  <Button Grid.Column="1"
-					  ToolTip.Tip="{TemplateBinding MyTooltip}"
-					  Content="{TemplateBinding MyTitle}"
-					  HorizontalAlignment="Stretch" VerticalAlignment="Center"
-					  FontSize="12" FontWeight="Bold"
-					  Foreground="White" Background="Transparent"
-					  Padding="0">
+			  <controls:ComponentTitleButton
+					Grid.Column="1"
+					DragDrop.AllowDrop="True"
+					Name="componentTitleButton"
+					ToolTip.Tip="{TemplateBinding MyTooltip}"
+					Content="{TemplateBinding MyTitle}"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Center"
+					FontSize="12" FontWeight="Bold"
+					Background="Transparent"
+					Padding="0">
 				  <Button.Styles>
 					  <Style Selector="Button:pointerover /template/ ContentPresenter">
 						  <Setter Property="TextBlock.Foreground" Value="White" />
@@ -44,7 +49,7 @@
 						  <Setter Property="TextBlock.Foreground" Value="White" />
 					  </Style>
 				  </Button.Styles>
-				  
+
 				  <Button.ContextMenu>
 					  <ContextMenu Name="componentContextMenu">
 						  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
@@ -52,7 +57,7 @@
 						  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
 					  </ContextMenu>
 				  </Button.ContextMenu>
-			  </Button>
+			  </controls:ComponentTitleButton>
 
 			  <Button Grid.Column="2"
 					  Name="contextMenuButton"

@@ -17,19 +17,55 @@
 
 	<Window.DataTemplates>
 		<DataTemplate DataType="{x:Type vm:MaterialViewModel}">
-			<controls:MaterialControl DataContext="{Binding}" />
+			<Border>
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Material"
+						MyTooltip="{Binding Description}" />
+					<controls:MaterialControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:MaterialListViewModel}">
-			<controls:MaterialListControl DataContext="{Binding}" />
+			<Border>
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Material List"
+						MyTooltip="{Binding Description}" />
+					<controls:MaterialListControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:TransformViewModel}">
-			<controls:TransformControl DataContext="{Binding}" />
+			<Border BorderThickness="0,0,0,0">
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Transform"
+						MyTooltip="{Binding Description}" />
+					<controls:TransformControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:AnimatorViewModel}">
-			<controls:AnimatorControl DataContext="{Binding}" />
+			<Border BorderThickness="0,0,0,0">
+				<StackPanel>
+					<controls:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="Animator"
+						MyTooltip="{Binding Description}" />
+					<controls:AnimatorControl DataContext="{Binding}" />
+				</StackPanel>
+			</Border>
 		</DataTemplate>
 	</Window.DataTemplates>
 

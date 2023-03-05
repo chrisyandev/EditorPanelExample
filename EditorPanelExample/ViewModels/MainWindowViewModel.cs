@@ -3,7 +3,6 @@ using Avalonia.Controls.Selection;
 using Avalonia.Input;
 using DynamicData;
 using EditorPanelExample.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EditorPanelExample.ViewModels
 {
@@ -37,15 +37,64 @@ namespace EditorPanelExample.ViewModels
             AddComponentFlyoutSelection = new SelectionModel<string>(AvailableComponents);
             AddComponentFlyoutSelection.SelectionChanged += AddComponentFlyoutSelectionChanged;
 
+            ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, Unit> insertComponentCommand
+                = ReactiveCommand.Create<Tuple<MyComponentBase, MyComponentBase>>(_ =>
+                {
+                    (MyComponentBase target, MyComponentBase source) = _;
+
+                    if (target != source)
+                    {
+                        string dragDirection = ViewModels.IndexOf(source) < ViewModels.IndexOf(target) ? "down" : "up";
+
+                        // Must remove before inserting
+                        ViewModels.Remove(source);
+
+                        if (dragDirection == "down")
+                        {
+                            ViewModels.Insert(ViewModels.IndexOf(target) + 1, source);
+                        }
+                        else if (dragDirection == "up")
+                        {
+                            ViewModels.Insert(ViewModels.IndexOf(target), source);
+                        }
+                    }
+                });
+            InsertComponentCommand = insertComponentCommand;
+
+            ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> getDragDirectionCommand
+                = ReactiveCommand.Create<Tuple<MyComponentBase, MyComponentBase>, string>(_ =>
+                {
+                    (MyComponentBase target, MyComponentBase source) = _;
+
+                    int indexOfSource = ViewModels.IndexOf(source);
+                    int indexOfTarget = ViewModels.IndexOf(target);
+
+                    if (indexOfSource < indexOfTarget)
+                    {
+                        return "down";
+                    }
+                    else if (indexOfSource > indexOfTarget)
+                    {
+                        return "up";
+                    }
+                    else
+                    {
+                        return "none";
+                    }
+                });
+            GetDragDirectionCommand = getDragDirectionCommand;
+
 
             // ===== Mock Data =====
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
 
-            MaterialList materialList = new MaterialList();
-            materialList.Add(new Material("ExampleMaterial.mat"));
-            materialList.Add(new Material("ExampleMaterial1.mat"));
-            materialList.Add(new Material("ExampleMaterial2.mat"));
-            materialList.Add(new Material("ExampleMaterial3.mat"));
+            MaterialList materialList = new MaterialList
+            {
+                new Material("ExampleMaterial.mat"),
+                new Material("ExampleMaterial1.mat"),
+                new Material("ExampleMaterial2.mat"),
+                new Material("ExampleMaterial3.mat")
+            };
             ViewModels.Add(new MaterialListViewModel(materialList));
 
             ViewModels.Add(new TransformViewModel(new Transform(24, 30, 55)));
@@ -134,5 +183,8 @@ namespace EditorPanelExample.ViewModels
                 });
             component.MoveDownCommand = moveDownCommand;
         }
+
+        public ICommand InsertComponentCommand { get; set; }
+        public ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> GetDragDirectionCommand { get; set; }
     }
 }
