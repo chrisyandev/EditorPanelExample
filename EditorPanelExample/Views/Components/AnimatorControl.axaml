@@ -6,25 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
              x:Class="EditorPanelExample.Views.Components.AnimatorControl">
 
-	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
-			BorderBrush="Black"
-			BorderThickness="0,0,0,2"
-			CornerRadius="0"
-			Padding="4">
+	<Border Classes="componentBorder">
 		<StackPanel IsVisible="{Binding !IsCollapsed}">
 			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-					ColumnDefinitions="Auto,*"
-					Margin="10,0">
-				<Grid.Styles>
-					<Style Selector="TextBlock">
-						<Setter Property="HorizontalAlignment" Value="Left" />
-						<Setter Property="VerticalAlignment" Value="Center" />
-						<Setter Property="Margin" Value="0,0,10,0" />
-					</Style>
-				</Grid.Styles>
+				  ColumnDefinitions="Auto,*">
 
-				<TextBlock Grid.Row="0" Grid.Column="0" Foreground="White">Controller</TextBlock>
-				<TextBlock Grid.Row="1" Grid.Column="0" Foreground="White">Avatar</TextBlock>
+				<TextBlock Grid.Row="0" Grid.Column="0" Classes="label">Controller</TextBlock>
+				<TextBlock Grid.Row="1" Grid.Column="0" Classes="label">Avatar</TextBlock>
 
 				<templates:TextBoxClearButtonInsideTemplate
 					Grid.Row="0" Grid.Column="1"
@@ -37,21 +25,12 @@
 					MyClearCommand="{Binding ClearAvatar}" />
 
 				<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-					<TextBlock VerticalAlignment="Center"
-								Foreground="White">
-						Apply Root Motion
-					</TextBlock>
-					<CheckBox IsChecked="{Binding ApplyRootMotion}" Foreground="White">
-						<CheckBox.Styles>
-							<Style Selector="CheckBox:pointerover /template/ ContentPresenter">
-								<Setter Property="TextBlock.Foreground" Value="White"/>
-							</Style>
-						</CheckBox.Styles>
-					</CheckBox>
+					<TextBlock Classes="label">Apply Root Motion</TextBlock>
+					<CheckBox IsChecked="{Binding ApplyRootMotion}" />
 				</StackPanel>
 
-				<TextBlock Grid.Row="3" Grid.Column="0" Foreground="White">Update Mode</TextBlock>
-				<TextBlock Grid.Row="4" Grid.Column="0" Foreground="White">Culling Mode</TextBlock>
+				<TextBlock Grid.Row="3" Grid.Column="0" Classes="label">Update Mode</TextBlock>
+				<TextBlock Grid.Row="4" Grid.Column="0" Classes="label">Culling Mode</TextBlock>
 
 				<ComboBox Grid.Row="3" Grid.Column="1"
 							Items="{Binding UpdateModes}"
