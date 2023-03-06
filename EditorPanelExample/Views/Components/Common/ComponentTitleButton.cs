@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditorPanelExample.Views.Controls
+namespace EditorPanelExample.Views.Components.Common
 {
     public sealed class ComponentTitleButton : Button, IStyleable
     {

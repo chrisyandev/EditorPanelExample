@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:controls="using:EditorPanelExample.Views.Controls"
+			 xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
-             x:Class="EditorPanelExample.Views.Controls.AnimatorControl">
+             x:Class="EditorPanelExample.Views.Components.AnimatorControl">
 
 	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
 			BorderBrush="Black"
@@ -26,12 +26,12 @@
 				<TextBlock Grid.Row="0" Grid.Column="0" Foreground="White">Controller</TextBlock>
 				<TextBlock Grid.Row="1" Grid.Column="0" Foreground="White">Avatar</TextBlock>
 
-				<controls:TextBoxClearButtonInsideTemplate
+				<templates:TextBoxClearButtonInsideTemplate
 					Grid.Row="0" Grid.Column="1"
 					MyText="{Binding Controller}"
 					MyClearCommand="{Binding ClearController}" />
 
-				<controls:TextBoxClearButtonInsideTemplate
+				<templates:TextBoxClearButtonInsideTemplate
 					Grid.Row="1" Grid.Column="1"
 					MyText="{Binding Avatar}"
 					MyClearCommand="{Binding ClearAvatar}" />

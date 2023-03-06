@@ -8,6 +8,7 @@ using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.VisualTree;
 using EditorPanelExample.ViewModels;
+using EditorPanelExample.Views.Components.Common;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ using System.Linq;
 using System.Reactive;
 using System.Windows.Input;
 
-namespace EditorPanelExample.Views.Controls
+namespace EditorPanelExample.Views.Components.Templates
 {
     public class ComponentHeaderTemplate : TemplatedControl
     {

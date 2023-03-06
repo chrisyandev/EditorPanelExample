@@ -1,11 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:EditorPanelExample.Views.Controls">
+        xmlns:components="using:EditorPanelExample.Views.Components"
+		xmlns:templates="using:EditorPanelExample.Views.Components.Templates">
   <Design.PreviewWith>
-    <controls:TextBoxClearButtonInsideTemplate />
+    <templates:TextBoxClearButtonInsideTemplate />
   </Design.PreviewWith>
 
-  <Style Selector="controls|TextBoxClearButtonInsideTemplate">
+  <Style Selector="templates|TextBoxClearButtonInsideTemplate">
     <!-- Set Defaults -->
     <Setter Property="Template">
       <ControlTemplate>
