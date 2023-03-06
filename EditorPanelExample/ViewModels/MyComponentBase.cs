@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace EditorPanelExample.ViewModels
 {
-    public abstract class MyComponentBase : ViewModelBase, IMyCollapsible, IMyRemovable
+    public abstract class MyComponentBase : ViewModelBase
     {
         public abstract bool IsCollapsed { get; set; }
         public abstract ICommand RemoveComponentCommand { get; set; }
