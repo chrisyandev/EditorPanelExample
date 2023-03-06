@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="250"
+             x:Class="EditorPanelExample.Views.Components.AnimatorControl">
+
+	<Border Classes="componentBorder">
+		<StackPanel IsVisible="{Binding !IsCollapsed}">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+				  ColumnDefinitions="Auto,*">
+
+				<TextBlock Grid.Row="0" Grid.Column="0" Classes="label">Controller</TextBlock>
+				<TextBlock Grid.Row="1" Grid.Column="0" Classes="label">Avatar</TextBlock>
+
+				<templates:TextBoxClearButtonInsideTemplate
+					Grid.Row="0" Grid.Column="1"
+					MyText="{Binding Controller}"
+					MyClearCommand="{Binding ClearController}" />
+
+				<templates:TextBoxClearButtonInsideTemplate
+					Grid.Row="1" Grid.Column="1"
+					MyText="{Binding Avatar}"
+					MyClearCommand="{Binding ClearAvatar}" />
+
+				<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+					<TextBlock Classes="label">Apply Root Motion</TextBlock>
+					<CheckBox IsChecked="{Binding ApplyRootMotion}" />
+				</StackPanel>
+
+				<TextBlock Grid.Row="3" Grid.Column="0" Classes="label">Update Mode</TextBlock>
+				<TextBlock Grid.Row="4" Grid.Column="0" Classes="label">Culling Mode</TextBlock>
+
+				<ComboBox Grid.Row="3" Grid.Column="1"
+							Items="{Binding UpdateModes}"
+							SelectedItem="{Binding SelectedUpdateMode}"
+							HorizontalAlignment="Stretch" />
+				<ComboBox Grid.Row="4" Grid.Column="1"
+							Items="{Binding CullingModes}"
+							SelectedItem="{Binding SelectedCullingMode}"
+							HorizontalAlignment="Stretch" />
+			</Grid>
+		</StackPanel>
+	</Border>
+
+</UserControl>

@@ -2,15 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:controls="using:EditorPanelExample.Views.Controls"
-             mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="200"
-             x:Class="EditorPanelExample.Views.Controls.TransformControl">
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
+             x:Class="EditorPanelExample.Views.Components.TransformControl">
 
-	<Border Background="{DynamicResource LacqueredLicoriceBrush}"
-			BorderBrush="Black"
-			BorderThickness="0 0 0 2"
-			CornerRadius="0"
-			Padding="4">
+	<Border Classes="componentBorder">
 		<Border Grid.Row="1"
 				IsVisible="{Binding !IsCollapsed}"
 				Background="{DynamicResource CharcoalBrush}"
@@ -18,20 +13,11 @@
 				BorderThickness="0"
 				CornerRadius="3"
 				Padding="4">
-			<Grid RowDefinitions="Auto Auto Auto"
-					ColumnDefinitions="Auto * Auto">
-				<Grid.Styles>
-					<Style Selector="TextBlock">
-						<Setter Property="Foreground" Value="White" />
-						<Setter Property="HorizontalAlignment" Value="Center" />
-						<Setter Property="VerticalAlignment" Value="Center" />
-						<Setter Property="Margin" Value="2,0,6,0" />
-					</Style>
-				</Grid.Styles>
-					
-				<TextBlock Grid.Row="0" Grid.Column="0">X</TextBlock>
-				<TextBlock Grid.Row="1" Grid.Column="0">Y</TextBlock>
-				<TextBlock Grid.Row="2" Grid.Column="0">Z</TextBlock>
+			<Grid RowDefinitions="Auto Auto Auto" ColumnDefinitions="Auto * Auto">
+				
+				<TextBlock Grid.Row="0" Grid.Column="0" Classes="label">X</TextBlock>
+				<TextBlock Grid.Row="1" Grid.Column="0" Classes="label">Y</TextBlock>
+				<TextBlock Grid.Row="2" Grid.Column="0" Classes="label">Z</TextBlock>
 
 				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding X, FallbackValue=0}" />
 				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Y, FallbackValue=0}" />
@@ -52,7 +38,7 @@
 					Margin="4,0,0,0">
 					<Button.Styles>
 						<Style Selector="Button:pointerover /template/ ContentPresenter">
-							<Setter Property="Background" Value="{DynamicResource LacqueredLicoriceBrush}"/>
+							<Setter Property="Background" Value="{DynamicResource DefaultDarkBrush}"/>
 							<Setter Property="TextBlock.Foreground" Value="White" />
 						</Style>
 

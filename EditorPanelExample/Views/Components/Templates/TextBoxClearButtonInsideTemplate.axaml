@@ -1,11 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:EditorPanelExample.Views.Controls">
+        xmlns:components="using:EditorPanelExample.Views.Components"
+		xmlns:templates="using:EditorPanelExample.Views.Components.Templates">
   <Design.PreviewWith>
-    <controls:TextBoxClearButtonInsideTemplate />
+    <templates:TextBoxClearButtonInsideTemplate />
   </Design.PreviewWith>
 
-  <Style Selector="controls|TextBoxClearButtonInsideTemplate">
+  <Style Selector="templates|TextBoxClearButtonInsideTemplate">
     <!-- Set Defaults -->
     <Setter Property="Template">
       <ControlTemplate>
@@ -26,7 +27,7 @@
 					  Margin="0,0,6,0">
 				  <Button.Styles>
 					  <Style Selector="Button:pointerover /template/ ContentPresenter">
-						  <Setter Property="Background" Value="{DynamicResource LacqueredLicoriceBrush}"/>
+						  <Setter Property="Background" Value="{DynamicResource DefaultDarkBrush}"/>
 						  <Setter Property="TextBlock.Foreground" Value="White" />
 					  </Style>
 

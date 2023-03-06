@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace EditorPanelExample.Views.Controls
+namespace EditorPanelExample.Views.Components.Templates
 {
     public class TextBoxClearButtonInsideTemplate : TemplatedControl
     {

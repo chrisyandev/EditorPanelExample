@@ -3,7 +3,7 @@ using Avalonia.Media;
 using EditorPanelExample.Models;
 using System;
 
-namespace EditorPanelExample.Views.Controls
+namespace EditorPanelExample.Views.Components
 {
     public partial class AnimatorControl : UserControl
     {

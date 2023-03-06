@@ -1,11 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:EditorPanelExample.Views.Controls">
+		xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
+		xmlns:common="using:EditorPanelExample.Views.Components.Common">
   <Design.PreviewWith>
-    <controls:ComponentHeaderTemplate />
+    <templates:ComponentHeaderTemplate />
   </Design.PreviewWith>
 
-  <Style Selector="controls|ComponentHeaderTemplate">
+  <Style Selector="templates|ComponentHeaderTemplate">
     <!-- Set Defaults -->
     <Setter Property="Template">
       <ControlTemplate>
@@ -30,7 +31,7 @@
 				  </Panel>
 			  </Button>
 
-			  <controls:ComponentTitleButton
+			  <common:ComponentTitleButton
 					Grid.Column="1"
 					DragDrop.AllowDrop="True"
 					Name="componentTitleButton"
@@ -57,7 +58,7 @@
 						  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
 					  </ContextMenu>
 				  </Button.ContextMenu>
-			  </controls:ComponentTitleButton>
+			  </common:ComponentTitleButton>
 
 			  <Button Grid.Column="2"
 					  Name="contextMenuButton"

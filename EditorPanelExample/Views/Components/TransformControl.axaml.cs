@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using SkiaSharp;
 
-namespace EditorPanelExample.Views.Controls
+namespace EditorPanelExample.Views.Components
 {
     public partial class TransformControl : UserControl
     {

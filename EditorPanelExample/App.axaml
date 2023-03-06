@@ -9,13 +9,19 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
-		<StyleInclude Source="avares://EditorPanelExample/Views/Controls/ComponentHeaderTemplate.axaml" />
-		<StyleInclude Source="avares://EditorPanelExample/Views/Controls/TextBoxClearButtonInsideTemplate.axaml" />
+		<StyleInclude Source="avares://EditorPanelExample/Views/Components/Templates/ComponentHeaderTemplate.axaml" />
+		<StyleInclude Source="avares://EditorPanelExample/Views/Components/Templates/TextBoxClearButtonInsideTemplate.axaml" />
     </Application.Styles>
 
 	<Application.Resources>
+		<SolidColorBrush x:Key="DefaultDarkBrush">#383838</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushDarker1">#2b2b2b</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushDarker2">#1f1f1f</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushDarker3">#121212</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushLighter1">#454545</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushLighter2">#525252</SolidColorBrush>
+		<SolidColorBrush x:Key="DefaultDarkBrushLighter3">#5e5e5e</SolidColorBrush>
 		<SolidColorBrush x:Key="ShuttleGreyBrush">#64676e</SolidColorBrush>
-		<SolidColorBrush x:Key="LacqueredLicoriceBrush">#383838</SolidColorBrush>
 		<SolidColorBrush x:Key="CharcoalBrush">#4a4a4a</SolidColorBrush>
 
 		<debugger:DebuggerConverter x:Key="DebuggerConverter" />
