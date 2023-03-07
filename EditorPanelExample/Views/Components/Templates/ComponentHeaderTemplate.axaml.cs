@@ -90,6 +90,9 @@ namespace EditorPanelExample.Views.Components.Templates
                     if (componentContextMenu != null && contextMenuButton != null)
                     {
                         componentContextMenu.PlacementTarget = contextMenuButton;
+                        componentContextMenu.PlacementMode = PlacementMode.AnchorAndGravity;
+                        componentContextMenu.PlacementAnchor = Avalonia.Controls.Primitives.PopupPositioning.PopupAnchor.Bottom;
+                        componentContextMenu.PlacementGravity = Avalonia.Controls.Primitives.PopupPositioning.PopupGravity.BottomLeft;
                         componentContextMenu.Open();
                     }
                 });
