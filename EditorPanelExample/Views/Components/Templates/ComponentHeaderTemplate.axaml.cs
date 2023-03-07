@@ -161,7 +161,7 @@ namespace EditorPanelExample.Views.Components.Templates
             }
         }
 
-        private void Drop(object? sender, DragEventArgs e)
+        private void Drop(object sender, DragEventArgs e)
         {
             Debug.WriteLine("Drag End");
 
