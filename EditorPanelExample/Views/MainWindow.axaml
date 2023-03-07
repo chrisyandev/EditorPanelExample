@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:models="using:EditorPanelExample.Models"
 		xmlns:components="using:EditorPanelExample.Views.Components"
+		xmlns:common="using:EditorPanelExample.Views.Components.Common"
 		xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
         mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
 		Width="250" Height="750" MinHeight="200" MinWidth="200"
@@ -176,9 +177,10 @@
 				
 				<Button.Flyout>
 					<Flyout Placement="Top">
-						<ListBox Name="addComponentListBox" Items="{Binding AvailableComponents}"
-								 Selection="{Binding AddComponentFlyoutSelection}">
-						</ListBox>
+						<common:AddComponentListBox
+							Name="addComponentListBox"
+							Items="{Binding AvailableComponents}"
+							SelectedItem="{Binding SelectedComponentName}" />
 					</Flyout>
 				</Button.Flyout>
 			</Button>
