@@ -7,7 +7,7 @@
              x:Class="EditorPanelExample.Views.Components.MaterialControl">
 
 	<Border Classes="componentBorder">
-		<StackPanel IsVisible="{Binding !IsCollapsed}">
+		<StackPanel IsVisible="{Binding !IsCollapsed}" Margin="{StaticResource ComponentSeparatorInnerSpacing}">
 			<templates:TextBoxClearButtonInsideTemplate
 				MyText="{Binding Material}"
 				MyClearCommand="{Binding ClearMaterial}" />

@@ -24,6 +24,8 @@
 		<SolidColorBrush x:Key="ShuttleGreyBrush">#64676e</SolidColorBrush>
 		<SolidColorBrush x:Key="CharcoalBrush">#4a4a4a</SolidColorBrush>
 
+		<Thickness x:Key="ComponentSeparatorInnerSpacing">0,0,0,3</Thickness>
+
 		<debugger:DebuggerConverter x:Key="DebuggerConverter" />
 	</Application.Resources>
 </Application>

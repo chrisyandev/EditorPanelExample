@@ -7,7 +7,7 @@
              x:Class="EditorPanelExample.Views.Components.AnimatorControl">
 
 	<Border Classes="componentBorder">
-		<StackPanel IsVisible="{Binding !IsCollapsed}">
+		<StackPanel IsVisible="{Binding !IsCollapsed}" Margin="{StaticResource ComponentSeparatorInnerSpacing}">
 			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
 				  ColumnDefinitions="Auto,*">
 
