@@ -7,8 +7,8 @@
 		xmlns:components="using:EditorPanelExample.Views.Components"
 		xmlns:common="using:EditorPanelExample.Views.Components.Common"
 		xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
-        mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
-		Width="250" Height="750" MinHeight="200" MinWidth="200"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="750"
+		Width="300" Height="750" MinHeight="200" MinWidth="200"
 		Background="{DynamicResource DefaultDarkBrush}"
         x:Class="EditorPanelExample.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -78,7 +78,7 @@
 			<Setter Property="BorderBrush" Value="Black" />
 			<Setter Property="BorderThickness" Value="0,0,0,2" />
 			<Setter Property="CornerRadius" Value="0" />
-			<Setter Property="Padding" Value="4,0,4,1" />
+			<Setter Property="Padding" Value="16,0,16,1" />
 		</Style>
 		<Style Selector="Button">
 			<Setter Property="Foreground" Value="White" />
