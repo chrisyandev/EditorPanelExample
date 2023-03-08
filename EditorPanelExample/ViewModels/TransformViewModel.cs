@@ -26,7 +26,7 @@ namespace EditorPanelExample.ViewModels
             _transform = transform;
         }
 
-        public string Description { get; } = "Placeholder for description of Transform";
+        public string Title { get; } = "Transform";
 
         public List<string> ContextMenuItems { get; } = new List<string>()
         {

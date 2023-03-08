@@ -25,8 +25,8 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Material"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Material_Title}" />
 					<components:MaterialControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
@@ -38,8 +38,8 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Material List"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_MaterialList_Title}" />
 					<components:MaterialListControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
@@ -51,8 +51,8 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Transform"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Transform_Title}" />
 					<components:TransformControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
@@ -64,8 +64,8 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Animator"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Animator_Title}" />
 					<components:AnimatorControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>

@@ -16,9 +16,18 @@
 				Margin="{StaticResource ComponentSeparatorInnerSpacing}">
 			<Grid RowDefinitions="Auto Auto Auto" ColumnDefinitions="Auto * Auto">
 				
-				<TextBlock Grid.Row="0" Grid.Column="0" Classes="label">X</TextBlock>
-				<TextBlock Grid.Row="1" Grid.Column="0" Classes="label">Y</TextBlock>
-				<TextBlock Grid.Row="2" Grid.Column="0" Classes="label">Z</TextBlock>
+				<TextBlock Grid.Row="0" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Transform_X}"
+						   Text="X" />
+				<TextBlock Grid.Row="1" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Transform_Y}"
+						   Text="Y" />
+				<TextBlock Grid.Row="2" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Transform_Z}"
+						   Text="Z" />
 
 				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding X, FallbackValue=0}" />
 				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Y, FallbackValue=0}" />
