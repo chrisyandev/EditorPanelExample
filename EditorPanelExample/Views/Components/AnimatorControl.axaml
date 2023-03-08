@@ -7,12 +7,18 @@
              x:Class="EditorPanelExample.Views.Components.AnimatorControl">
 
 	<Border Classes="componentBorder">
-		<StackPanel IsVisible="{Binding !IsCollapsed}">
+		<StackPanel IsVisible="{Binding !IsCollapsed}" Margin="{StaticResource ComponentSeparatorInnerSpacing}">
 			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
 				  ColumnDefinitions="Auto,*">
 
-				<TextBlock Grid.Row="0" Grid.Column="0" Classes="label">Controller</TextBlock>
-				<TextBlock Grid.Row="1" Grid.Column="0" Classes="label">Avatar</TextBlock>
+				<TextBlock Grid.Row="0" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Animator_Controller}"
+						   Text="Controller" />
+				<TextBlock Grid.Row="1" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Animator_Avatar}"
+						   Text="Avatar" />
 
 				<templates:TextBoxClearButtonInsideTemplate
 					Grid.Row="0" Grid.Column="1"
@@ -25,13 +31,21 @@
 					MyClearCommand="{Binding ClearAvatar}" />
 
 				<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-					<TextBlock Classes="label">Apply Root Motion</TextBlock>
+					<TextBlock Classes="label"
+							   ToolTip.Tip="{StaticResource toolTip_Animator_ApplyRootMotion}"
+							   Text="Apply Root Motion" />
 					<CheckBox IsChecked="{Binding ApplyRootMotion}" />
 				</StackPanel>
 
-				<TextBlock Grid.Row="3" Grid.Column="0" Classes="label">Update Mode</TextBlock>
-				<TextBlock Grid.Row="4" Grid.Column="0" Classes="label">Culling Mode</TextBlock>
-
+				<TextBlock Grid.Row="3" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Animator_UpdateMode}"
+						   Text="Update Mode" />
+				<TextBlock Grid.Row="4" Grid.Column="0"
+						   Classes="label"
+						   ToolTip.Tip="{StaticResource toolTip_Animator_CullingMode}"
+						   Text="Culling Mode" />
+				
 				<ComboBox Grid.Row="3" Grid.Column="1"
 							Items="{Binding UpdateModes}"
 							SelectedItem="{Binding SelectedUpdateMode}"

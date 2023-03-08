@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:models="using:EditorPanelExample.Models"
 		xmlns:components="using:EditorPanelExample.Views.Components"
+		xmlns:common="using:EditorPanelExample.Views.Components.Common"
 		xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
         mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
 		Width="250" Height="750" MinHeight="200" MinWidth="200"
@@ -24,8 +25,8 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Material"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Material_Title}" />
 					<components:MaterialControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
@@ -37,34 +38,34 @@
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Material List"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_MaterialList_Title}" />
 					<components:MaterialListControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:TransformViewModel}">
-			<Border BorderThickness="0,0,0,0">
+			<Border>
 				<StackPanel>
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Transform"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Transform_Title}" />
 					<components:TransformControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type vm:AnimatorViewModel}">
-			<Border BorderThickness="0,0,0,0">
+			<Border>
 				<StackPanel>
 					<templates:ComponentHeaderTemplate
 						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
 						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
-						MyTitle="Animator"
-						MyTooltip="{Binding Description}" />
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Animator_Title}" />
 					<components:AnimatorControl DataContext="{Binding}" />
 				</StackPanel>
 			</Border>
@@ -77,7 +78,7 @@
 			<Setter Property="BorderBrush" Value="Black" />
 			<Setter Property="BorderThickness" Value="0,0,0,2" />
 			<Setter Property="CornerRadius" Value="0" />
-			<Setter Property="Padding" Value="4" />
+			<Setter Property="Padding" Value="4,0,4,1" />
 		</Style>
 		<Style Selector="Button">
 			<Setter Property="Foreground" Value="White" />
@@ -152,7 +153,7 @@
 		</Style>
 	</Window.Styles>
 
-	<ScrollViewer Name="mainScrollViewer">
+	<common:MainScrollViewer Name="mainScrollViewer">
 		<StackPanel>
 			<ItemsControl Items="{Binding ViewModels}">
 				<ItemsControl.ItemsPanel>
@@ -176,13 +177,14 @@
 				
 				<Button.Flyout>
 					<Flyout Placement="Top">
-						<ListBox Name="addComponentListBox" Items="{Binding AvailableComponents}"
-								 Selection="{Binding AddComponentFlyoutSelection}">
-						</ListBox>
+						<common:AddComponentListBox
+							Name="addComponentListBox"
+							Items="{Binding AvailableComponents}"
+							SelectedItem="{Binding SelectedComponentName}" />
 					</Flyout>
 				</Button.Flyout>
 			</Button>
 		</StackPanel>
-	</ScrollViewer>
+	</common:MainScrollViewer>
 
 </Window>

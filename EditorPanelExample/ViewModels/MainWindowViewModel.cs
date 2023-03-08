@@ -34,9 +34,6 @@ namespace EditorPanelExample.ViewModels
 
             AvailableComponents = new List<string>(_componentNameToTypeMap.Keys);
 
-            AddComponentFlyoutSelection = new SelectionModel<string>(AvailableComponents);
-            AddComponentFlyoutSelection.SelectionChanged += AddComponentFlyoutSelectionChanged;
-
             ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, Unit> insertComponentCommand
                 = ReactiveCommand.Create<Tuple<MyComponentBase, MyComponentBase>>(_ =>
                 {
@@ -112,9 +109,33 @@ namespace EditorPanelExample.ViewModels
 
         public ObservableCollection<MyComponentBase> ViewModels { get; }
 
+        #region Add Component Logic
         public List<string> AvailableComponents { get; }
 
-        public SelectionModel<string> AddComponentFlyoutSelection { get; }
+        private string _selectedComponentName;
+
+        public string SelectedComponentName
+        {
+            get => _selectedComponentName;
+            set
+            {
+                if (value == _selectedComponentName) return;
+                _selectedComponentName = value;
+                this.RaisePropertyChanged(nameof(SelectedComponentName));
+
+
+                if (_selectedComponentName != null && _componentNameToTypeMap.ContainsKey(_selectedComponentName))
+                {
+                    AddComponent(_selectedComponentName);
+                }
+                else
+                {
+                    // just for skipping debug message
+                    if (_selectedComponentName == null) return;
+                    Debug.WriteLine("Could not create component");
+                }
+            }
+        }
 
         private void AddComponent(string componentName)
         {
@@ -125,23 +146,10 @@ namespace EditorPanelExample.ViewModels
             SetRemoveComponentCommand(newComponent);
             SetMoveUpCommand(newComponent);
             SetMoveDownCommand(newComponent);
+
+            Debug.WriteLine($"Added {componentName}");
         }
-
-        private void AddComponentFlyoutSelectionChanged(object sender, SelectionModelSelectionChangedEventArgs e)
-        {
-            string selectedName = e.SelectedItems.FirstOrDefault() as string;
-
-            Debug.WriteLine($"Adding {selectedName}");
-
-            if (selectedName != null && _componentNameToTypeMap.ContainsKey(selectedName))
-            {
-                AddComponent(selectedName);
-            }
-            else
-            {
-                Debug.WriteLine("Could not create component");
-            }
-        }
+        #endregion
 
         private void SetRemoveComponentCommand(MyComponentBase component)
         {

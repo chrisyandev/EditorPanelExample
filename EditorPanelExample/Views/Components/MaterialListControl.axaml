@@ -6,7 +6,7 @@
              x:Class="EditorPanelExample.Views.Components.MaterialListControl">
 
 	<Border Classes="componentBorder">
-		<StackPanel IsVisible="{Binding !IsCollapsed}">
+		<StackPanel IsVisible="{Binding !IsCollapsed}" Margin="{StaticResource ComponentSeparatorInnerSpacing}">
 			<ItemsControl Items="{Binding Materials}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
@@ -32,7 +32,7 @@
 			</ItemsControl>
 
 			<Button HorizontalAlignment="Center"
-					Margin="5" Padding="5"
+					Margin="0,5,0,0" Padding="5"
 					FontSize="10"
 					Command="{Binding AddMaterial}">
 				<Button.Styles>

@@ -32,7 +32,7 @@ namespace EditorPanelExample.ViewModels
             InitializeThisComponent();
         }
 
-        public string Description { get; } = "Placeholder for description of Animator";
+        public string Title { get; } = "Animator";
 
         public List<string> ContextMenuItems { get; } = new List<string>()
         {

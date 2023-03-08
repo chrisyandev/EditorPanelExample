@@ -23,7 +23,7 @@ namespace EditorPanelExample.ViewModels
             Materials = new ObservableCollection<Material>(materialList);
         }
 
-        public string Description { get; } = "Placeholder for description of Material List";
+        public string Title { get; } = "Material List";
 
         public List<string> ContextMenuItems { get; } = new List<string>()
         {

@@ -26,7 +26,7 @@ namespace EditorPanelExample.ViewModels
             _material = material;
         }
 
-        public string Description { get; } = "Placeholder for description of Material";
+        public string Title { get; } = "Material";
 
         public List<string> ContextMenuItems { get; } = new List<string>()
         {
