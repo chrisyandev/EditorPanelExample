@@ -32,7 +32,7 @@ namespace EditorPanelExample.Views.Components.Common
             // ListBox item is selected on pointer pressed by default. We want to select item on pointer released.
             base.OnPointerPressed(_pointerPressedEventArgs);
 
-            MyItemSelected.Invoke(this, EventArgs.Empty);
+            MyItemSelected?.Invoke(this, EventArgs.Empty);
 
             base.OnPointerReleased(e);
         }
