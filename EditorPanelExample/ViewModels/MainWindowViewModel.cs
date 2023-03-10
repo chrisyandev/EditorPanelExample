@@ -213,8 +213,11 @@ namespace EditorPanelExample.ViewModels
         }
 
         public ICommand InsertComponentCommand { get; set; }
+
         public ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> GetDragDirectionCommand { get; set; }
+
         public ICommand CollapseAllCommand { get; set; }
+
         public ICommand ExpandAllCommand { get; set; }
     }
 }

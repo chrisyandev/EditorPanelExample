@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using EditorPanelExample.Models;
+using EditorPanelExample.ViewModels.Dialogs;
+using EditorPanelExample.Views.Dialogs;
 using ReactiveUI;
 
 namespace EditorPanelExample.ViewModels
@@ -16,11 +20,13 @@ namespace EditorPanelExample.ViewModels
         public MaterialListViewModel()
         {
             Materials = new ObservableCollection<Material>();
+            SetupNewMaterialDialog();
         }
 
         public MaterialListViewModel(MaterialList materialList)
         {
             Materials = new ObservableCollection<Material>(materialList);
+            SetupNewMaterialDialog();
         }
 
         public string Title { get; } = "Material List";
@@ -44,11 +50,6 @@ namespace EditorPanelExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
         }
 
-        public void AddMaterial()
-        {
-            Materials.Add(new Material(""));
-        }
-
         public void RemoveMaterial(Material material)
         {
             Materials.Remove(material);
@@ -58,5 +59,23 @@ namespace EditorPanelExample.ViewModels
         {
             IsCollapsed = !IsCollapsed;
         }
+
+        #region Add New Material
+        public ICommand AddMaterialCommand { get; private set; }
+
+        public Interaction<NewMaterialViewModel, string> ShowNewMaterialDialog { get; private set; }
+
+        private void SetupNewMaterialDialog()
+        {
+            ShowNewMaterialDialog = new Interaction<NewMaterialViewModel, string>();
+
+            AddMaterialCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                NewMaterialViewModel vm = new NewMaterialViewModel();
+
+                var result = await ShowNewMaterialDialog.Handle(vm);
+            });
+        }
+        #endregion
     }
 }

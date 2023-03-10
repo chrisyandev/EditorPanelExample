@@ -34,7 +34,7 @@
 			<Button HorizontalAlignment="Center"
 					Margin="0,5,0,0" Padding="5"
 					FontSize="10"
-					Command="{Binding AddMaterial}">
+					Command="{Binding AddMaterialCommand}">
 				<Button.Styles>
 					<Style Selector="Button:pointerover /template/ ContentPresenter">
 						<Setter Property="TextBlock.Foreground" Value="White"/>

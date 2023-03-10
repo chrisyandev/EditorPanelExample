@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="200"
+		Width="300" Height="200" CanResize="False"
+		WindowStartupLocation="CenterOwner"
+        x:Class="EditorPanelExample.Views.Dialogs.NewMaterialWindow"
+        Title="NewMaterialWindow">
+	<DockPanel>
+		<TextBox DockPanel.Dock="Top"
+				 Text="{Binding NewMaterial}"
+				 Watermark="Material"
+				 HorizontalAlignment="Stretch"
+				 Height="24"
+				 Margin="16,50,16,0" />
+		<StackPanel Orientation="Horizontal"
+					HorizontalAlignment="Right"
+					Margin="0,0,16,0">
+			<StackPanel.Styles>
+				<Style Selector="Button">
+					<Setter Property="Width" Value="70" />
+					<Setter Property="Height" Value="25" />
+					<Setter Property="FontSize" Value="12" />
+					<Setter Property="HorizontalContentAlignment" Value="Center" />
+					<Setter Property="VerticalContentAlignment" Value="Center" />
+					<Setter Property="Margin" Value="5,0,0,0" />
+					<Setter Property="Padding" Value="0" />
+				</Style>
+			</StackPanel.Styles>
+			<Button Name="addButton" DockPanel.Dock="Bottom">Add</Button>
+			<Button Name="cancelButton" DockPanel.Dock="Bottom">Cancel</Button>
+		</StackPanel>
+	</DockPanel>
+</Window>
