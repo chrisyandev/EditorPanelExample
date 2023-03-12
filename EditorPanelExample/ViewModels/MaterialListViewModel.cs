@@ -76,8 +76,6 @@ namespace EditorPanelExample.ViewModels
 
                 string result = await ShowNewMaterialDialog.Handle(vm);
 
-                Debug.WriteLine($"MaterialListVM result: {result}");
-
                 if ( result != null && result.Trim() != string.Empty)
                 {
                     Material newMaterial = new(result);

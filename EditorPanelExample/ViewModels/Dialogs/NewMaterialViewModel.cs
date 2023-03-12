@@ -19,7 +19,6 @@ namespace EditorPanelExample.ViewModels.Dialogs
         {
             AddCommand = ReactiveCommand.Create(() =>
             {
-                Debug.WriteLine($"Add Command: {NewMaterial}");
                 return NewMaterial;
             });
 

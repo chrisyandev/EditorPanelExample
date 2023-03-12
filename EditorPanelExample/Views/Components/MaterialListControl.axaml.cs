@@ -31,13 +31,10 @@ namespace EditorPanelExample.Views.Components
         {
             NewMaterialWindow dialogWindow = new NewMaterialWindow
             {
-                DataContext = interaction.Input,
-                Title = "New Material"
+                DataContext = interaction.Input
             };
 
             string result = await dialogWindow.ShowDialog<string>(_parentWindow);
-
-            Debug.WriteLine($"MaterialListControl result: {result}");
 
             interaction.SetOutput(result);
         }

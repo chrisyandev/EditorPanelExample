@@ -23,8 +23,7 @@ namespace EditorPanelExample
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
-                    Title = "Editor Panel"
+                    DataContext = new MainWindowViewModel()
                 };
             }
 

@@ -12,7 +12,7 @@
 		Background="{DynamicResource DefaultDarkBrush}"
         x:Class="EditorPanelExample.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EditorPanelExample">
+        Title="Editor Panel">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel />

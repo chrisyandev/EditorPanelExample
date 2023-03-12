@@ -25,7 +25,6 @@ namespace EditorPanelExample.Views.Dialogs
         {
             if (dialogResult is string input && input.Trim() != string.Empty)
             {
-                Debug.WriteLine($"dialogResult: {input}");
                 Close(dialogResult);
             }
             else
