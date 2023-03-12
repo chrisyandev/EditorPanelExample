@@ -7,12 +7,12 @@
 		xmlns:components="using:EditorPanelExample.Views.Components"
 		xmlns:common="using:EditorPanelExample.Views.Components.Common"
 		xmlns:templates="using:EditorPanelExample.Views.Components.Templates"
-        mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="750"
-		Width="250" Height="750" MinHeight="200" MinWidth="200"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="750"
+		Width="300" Height="750" MinHeight="200" MinWidth="200"
 		Background="{DynamicResource DefaultDarkBrush}"
         x:Class="EditorPanelExample.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EditorPanelExample">
+        Title="Editor Panel">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel />
@@ -78,7 +78,7 @@
 			<Setter Property="BorderBrush" Value="Black" />
 			<Setter Property="BorderThickness" Value="0,0,0,2" />
 			<Setter Property="CornerRadius" Value="0" />
-			<Setter Property="Padding" Value="4,0,4,1" />
+			<Setter Property="Padding" Value="16,0,16,1" />
 		</Style>
 		<Style Selector="Button">
 			<Setter Property="Foreground" Value="White" />
@@ -153,38 +153,60 @@
 		</Style>
 	</Window.Styles>
 
-	<common:MainScrollViewer Name="mainScrollViewer">
-		<StackPanel>
-			<ItemsControl Items="{Binding ViewModels}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Vertical" />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-			</ItemsControl>
-			
-			<Button Name="addComponentButton"
-					Content="Add Component"
-					HorizontalAlignment="Center"
-					FontSize="12"
-					Margin="5" Padding="10,6">
-				<Button.Styles>
-					<Style Selector="Button:pointerover /template/ ContentPresenter">
-						<Setter Property="TextBlock.Foreground" Value="White"/>
-						<Setter Property="Background" Value="SlateBlue"/>
+	<Grid RowDefinitions="Auto *">
+		<Border Grid.Row="0" Classes="componentBorder">
+			<WrapPanel HorizontalAlignment="Right">
+				<WrapPanel.Styles>
+					<Style Selector="Button">
+						<Setter Property="FontSize" Value="10" />
+						<Setter Property="Padding" Value="3" />
+						<Setter Property="Margin" Value="5,5,0,3" />
 					</Style>
-				</Button.Styles>
-				
-				<Button.Flyout>
-					<Flyout Placement="Top">
-						<common:AddComponentListBox
-							Name="addComponentListBox"
-							Items="{Binding AvailableComponents}"
-							SelectedItem="{Binding SelectedComponentName}" />
-					</Flyout>
-				</Button.Flyout>
-			</Button>
-		</StackPanel>
-	</common:MainScrollViewer>
+					<Style Selector="Button:pointerover /template/ ContentPresenter">
+						<Setter Property="TextBlock.Foreground" Value="White" />
+						<Setter Property="Background" Value="SlateBlue" />
+					</Style>
+				</WrapPanel.Styles>
+				<Button Command="{Binding ExpandAllCommand}"
+						Content="Expand All" />
+				<Button Command="{Binding CollapseAllCommand}"
+						Content="Collapse All" />
+			</WrapPanel>
+		</Border>
+
+		<common:MainScrollViewer Grid.Row="1" Name="mainScrollViewer">
+			<StackPanel>
+				<ItemsControl Items="{Binding ViewModels}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Vertical" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+
+				<Button Name="addComponentButton"
+						Content="Add Component"
+						HorizontalAlignment="Center"
+						FontSize="12"
+						Margin="5" Padding="10,6">
+					<Button.Styles>
+						<Style Selector="Button:pointerover /template/ ContentPresenter">
+							<Setter Property="TextBlock.Foreground" Value="White" />
+							<Setter Property="Background" Value="SlateBlue" />
+						</Style>
+					</Button.Styles>
+
+					<Button.Flyout>
+						<Flyout Placement="Top">
+							<common:AddComponentListBox
+								Name="addComponentListBox"
+								Items="{Binding AvailableComponents}"
+								SelectedItem="{Binding SelectedComponentName}" />
+						</Flyout>
+					</Button.Flyout>
+				</Button>
+			</StackPanel>
+		</common:MainScrollViewer>
+	</Grid>
 
 </Window>

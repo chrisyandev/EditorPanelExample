@@ -81,6 +81,26 @@ namespace EditorPanelExample.ViewModels
                 });
             GetDragDirectionCommand = getDragDirectionCommand;
 
+            ReactiveCommand<Unit, Unit> collapseAllCommand
+                = ReactiveCommand.Create(() =>
+                {
+                    foreach (MyComponentBase component in ViewModels)
+                    {
+                        component.IsCollapsed = true;
+                    }
+                });
+            CollapseAllCommand = collapseAllCommand;
+
+            ReactiveCommand<Unit, Unit> expandAllCommand
+                = ReactiveCommand.Create(() =>
+                {
+                    foreach (MyComponentBase component in ViewModels)
+                    {
+                        component.IsCollapsed = false;
+                    }
+                });
+            ExpandAllCommand = expandAllCommand;
+
 
             // ===== Mock Data =====
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
@@ -193,6 +213,11 @@ namespace EditorPanelExample.ViewModels
         }
 
         public ICommand InsertComponentCommand { get; set; }
+
         public ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, string> GetDragDirectionCommand { get; set; }
+
+        public ICommand CollapseAllCommand { get; set; }
+
+        public ICommand ExpandAllCommand { get; set; }
     }
 }

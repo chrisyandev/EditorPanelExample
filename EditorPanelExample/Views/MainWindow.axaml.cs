@@ -1,20 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Selection;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using EditorPanelExample.Models;
-using EditorPanelExample.ViewModels;
 using EditorPanelExample.Views.Components.Common;
-using EditorPanelExample.Views.Components.Templates;
-using ReactiveUI;
 using System;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Reactive;
-using System.Windows.Input;
 
 namespace EditorPanelExample.Views
 {
