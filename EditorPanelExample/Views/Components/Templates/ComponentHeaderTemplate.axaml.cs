@@ -102,18 +102,20 @@ namespace EditorPanelExample.Views.Components.Templates
             #region Set Up Drag Component
             _componentTitleButton = e.NameScope.Find<ComponentTitleButton>("componentTitleButton");
             _componentTitleButton.ComponentTitleButtonMouseDown += DoDrag;
-            _componentTitleButton.AddHandler(DragDrop.DropEvent, Drop);
-            _componentTitleButton.AddHandler(DragDrop.DragEnterEvent, DragEnter);
+
+            foreach (Control control in Parent.LogicalChildren)
+            {
+                control.AddHandler(DragDrop.DragEnterEvent, DragEnter);
+                control.AddHandler(DragDrop.DropEvent, Drop);
+            }
             #endregion
         }
 
         private void DragEnter(object sender, DragEventArgs e)
         {
-            Debug.WriteLine("Drag Enter");
-
-            if (sender is ComponentTitleButton enteredButton)
+            if (sender is Control control)
             {
-                Border currentBorder = enteredButton.FindAncestorOfType<Border>();
+                Border currentBorder = control.FindAncestorOfType<Border>();
                 Border lastBorder = (e.Data.Get("LastBorder") as Border[])[0];
 
                 if (currentBorder == lastBorder)
@@ -123,7 +125,7 @@ namespace EditorPanelExample.Views.Components.Templates
                 }
                 else
                 {
-                    MyComponentBase targetComponent = enteredButton.DataContext as MyComponentBase;
+                    MyComponentBase targetComponent = control.DataContext as MyComponentBase;
                     MyComponentBase sourceComponent = e.Data.Get("SourceComponent") as MyComponentBase;
 
                     MyGetDragDirectionCommand.Execute(Tuple.Create(targetComponent, sourceComponent)).Subscribe(dragDirection =>
@@ -144,11 +146,11 @@ namespace EditorPanelExample.Views.Components.Templates
 
             DataObject dragData = new DataObject();
 
-            if (sender is ComponentTitleButton button)
+            if (sender is Control control)
             {
-                dragData.Set("SourceComponent", button.DataContext);
+                dragData.Set("SourceComponent", control.DataContext);
                 // Use array for data that needs to be modified during drag
-                dragData.Set("LastBorder", new Border[] { button.FindAncestorOfType<Border>() });
+                dragData.Set("LastBorder", new Border[] { control.FindAncestorOfType<Border>() });
                 dragData.Set("DragDirection", new string[] { "none" });
             }
 
@@ -167,9 +169,9 @@ namespace EditorPanelExample.Views.Components.Templates
 
             e.DragEffects = DragDropEffects.Move;
 
-            if (sender is ComponentTitleButton button)
+            if (sender is Control control)
             {
-                MyComponentBase targetComponent = button.DataContext as MyComponentBase;
+                MyComponentBase targetComponent = control.DataContext as MyComponentBase;
                 Debug.WriteLine($"Target: {targetComponent}");
 
                 MyComponentBase sourceComponent = e.Data.Get("SourceComponent") as MyComponentBase;
