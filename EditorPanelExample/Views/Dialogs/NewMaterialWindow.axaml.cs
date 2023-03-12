@@ -9,14 +9,20 @@ using Avalonia.Interactivity;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Avalonia;
 
 namespace EditorPanelExample.Views.Dialogs
 {
     public partial class NewMaterialWindow : ReactiveWindow<NewMaterialViewModel>
     {
+        private TextBox _materialInputTextBox;
+
         public NewMaterialWindow()
         {
             InitializeComponent();
+
+            _materialInputTextBox = this.FindControl<TextBox>("materialInputTextBox");
+            _materialInputTextBox.AttachedToVisualTree += (s, e) => _materialInputTextBox.Focus();
 
             this.WhenActivated(d => d(ViewModel!.AddCommand.Subscribe(CloseIfInputValid)));
         }

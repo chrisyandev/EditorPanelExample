@@ -12,6 +12,7 @@
 	
 	<DockPanel>
 		<TextBox DockPanel.Dock="Top"
+				 Name="materialInputTextBox"
 				 Text="{Binding NewMaterial}"
 				 Watermark="Material"
 				 Margin="16,30,16,0"
