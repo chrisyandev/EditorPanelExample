@@ -71,7 +71,11 @@
 			</Border>
 		</DataTemplate>
 	</Window.DataTemplates>
-
+	
+	<Window.Resources>
+		<SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="{DynamicResource DefaultDarkBrushDarker2}" />
+	</Window.Resources>
+	
 	<Window.Styles>
 		<Style Selector="Border.componentBorder">
 			<Setter Property="Background" Value="{DynamicResource DefaultDarkBrush}" />
@@ -90,7 +94,7 @@
 			<Setter Property="FontSize" Value="12" />
 			<Setter Property="MinHeight" Value="24" />
 			<Setter Property="Height" Value="24" />
-			<Setter Property="Padding" Value="4" />
+			<Setter Property="Padding" Value="6,0,6,0" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
 		</Style>
 		<Style Selector="ComboBox">
@@ -99,6 +103,18 @@
 			<Setter Property="Height" Value="24" />
 			<Setter Property="Padding" Value="4" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style Selector="ComboBoxItem">
+			<Setter Property="Background" Value="{DynamicResource DefaultDarkBrushDarker2}" />
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="ComboBoxItem:selected /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource DefaultDarkBrush}" />
+			<Setter Property="TextBlock.Foreground" Value="White" />
+		</Style>
+		<Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource DefaultDarkBrushLighter2}" />
+			<Setter Property="TextBlock.Foreground" Value="White" />
 		</Style>
 		<Style Selector="TextBlock.label">
 			<Setter Property="Foreground" Value="White" />

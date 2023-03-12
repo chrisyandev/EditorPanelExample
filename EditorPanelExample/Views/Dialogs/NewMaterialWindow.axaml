@@ -38,7 +38,9 @@
 				</Style>
 			</StackPanel.Styles>
 
-			<Button Command="{Binding AddCommand}" IsDefault="True">
+			<Button Command="{Binding AddCommand}"
+					IsDefault="True"
+					Background="DarkGreen" >
 				<Button.Styles>
 					<Style Selector="Button:pointerover /template/ ContentPresenter">
 						<Setter Property="TextBlock.Foreground" Value="White" />
@@ -52,7 +54,7 @@
 				<Button.Styles>
 					<Style Selector="Button:pointerover /template/ ContentPresenter">
 						<Setter Property="TextBlock.Foreground" Value="White" />
-						<Setter Property="Background" Value="Gray" />
+						<Setter Property="Background" Value="{DynamicResource DefaultDarkBrushLighter3}" />
 					</Style>
 				</Button.Styles>
 				Cancel
