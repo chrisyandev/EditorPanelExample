@@ -10,8 +10,11 @@
 			<ItemsControl Items="{Binding Materials}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Grid ColumnDefinitions="* Auto">
-							<TextBox Grid.Column="0" Text="{Binding Name}"/>
+						<Grid ColumnDefinitions="* Auto" Margin="0,1,0,0">
+							<TextBox Grid.Column="0"
+									 Text="{Binding Name}"
+									 IsReadOnly="True"
+									 IsEnabled="False" />
 							<Button Grid.Column="1"
 									Foreground="White"
 									FontSize="10"
@@ -20,8 +23,8 @@
 									CommandParameter="{Binding}">
 								<Button.Styles>
 									<Style Selector="Button:pointerover /template/ ContentPresenter">
-										<Setter Property="TextBlock.Foreground" Value="White"/>
-										<Setter Property="Background" Value="Red"/>
+										<Setter Property="TextBlock.Foreground" Value="White" />
+										<Setter Property="Background" Value="Red" />
 									</Style>
 								</Button.Styles>
 								X
@@ -37,8 +40,8 @@
 					Command="{Binding AddMaterialCommand}">
 				<Button.Styles>
 					<Style Selector="Button:pointerover /template/ ContentPresenter">
-						<Setter Property="TextBlock.Foreground" Value="White"/>
-						<Setter Property="Background" Value="Green"/>
+						<Setter Property="TextBlock.Foreground" Value="White" />
+						<Setter Property="Background" Value="Green" />
 					</Style>
 				</Button.Styles>
 				Add Material
