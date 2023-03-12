@@ -29,8 +29,6 @@ namespace EditorPanelExample.Views.Components
 
         private async Task DoShowNewMaterialDialog(InteractionContext<NewMaterialViewModel, string> interaction)
         {
-            Debug.WriteLine($"interaction: {interaction.Input}");
-
             NewMaterialWindow dialogWindow = new NewMaterialWindow
             {
                 DataContext = interaction.Input,
@@ -38,6 +36,9 @@ namespace EditorPanelExample.Views.Components
             };
 
             string result = await dialogWindow.ShowDialog<string>(_parentWindow);
+
+            Debug.WriteLine($"MaterialListControl result: {result}");
+
             interaction.SetOutput(result);
         }
     }

@@ -7,22 +7,36 @@ using ReactiveUI;
 using System.Threading.Tasks;
 using Avalonia.Interactivity;
 using System;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace EditorPanelExample.Views.Dialogs
 {
     public partial class NewMaterialWindow : ReactiveWindow<NewMaterialViewModel>
     {
-        private Button _addButton;
-        private Button _cancelButton;
-
         public NewMaterialWindow()
         {
             InitializeComponent();
 
-            _addButton = this.FindControl<Button>("addButton");
-            _cancelButton = this.FindControl<Button>("cancelButton");
+            this.WhenActivated(d => d(ViewModel!.AddCommand.Subscribe(CloseIfInputValid)));
+        }
 
-            //this.WhenActivated(d => d(ViewModel!.AddCommand.Subscribe(Close)));
+        private void CloseIfInputValid(object dialogResult)
+        {
+            if (dialogResult is string input && input.Trim() != string.Empty)
+            {
+                Debug.WriteLine($"dialogResult: {input}");
+                Close(dialogResult);
+            }
+            else
+            {
+                ViewModel!.InvalidInputMessage = new List<string> { "Invalid input" };
+            }
+        }
+
+        public void OnCancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

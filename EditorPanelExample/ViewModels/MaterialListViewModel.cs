@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -73,7 +74,17 @@ namespace EditorPanelExample.ViewModels
             {
                 NewMaterialViewModel vm = new NewMaterialViewModel();
 
-                var result = await ShowNewMaterialDialog.Handle(vm);
+                string result = await ShowNewMaterialDialog.Handle(vm);
+
+                Debug.WriteLine($"MaterialListVM result: {result}");
+
+                if ( result != null && result.Trim() != string.Empty)
+                {
+                    Material newMaterial = new(result);
+                    Materials.Add(newMaterial);
+
+                    Debug.WriteLine($"Added new material: {newMaterial.Name}");
+                }
             });
         }
         #endregion

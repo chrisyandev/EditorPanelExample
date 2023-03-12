@@ -11,10 +11,14 @@
 		<TextBox DockPanel.Dock="Top"
 				 Text="{Binding NewMaterial}"
 				 Watermark="Material"
+				 Margin="16,50,16,0"
 				 HorizontalAlignment="Stretch"
-				 Height="24"
-				 Margin="16,50,16,0" />
-		<StackPanel Orientation="Horizontal"
+				 MinHeight="24"
+				 FontSize="12"
+				 DataValidationErrors.Errors="{Binding InvalidInputMessage}" />
+
+		<StackPanel DockPanel.Dock="Bottom"
+					Orientation="Horizontal"
 					HorizontalAlignment="Right"
 					Margin="0,0,16,0">
 			<StackPanel.Styles>
@@ -28,8 +32,8 @@
 					<Setter Property="Padding" Value="0" />
 				</Style>
 			</StackPanel.Styles>
-			<Button Name="addButton" DockPanel.Dock="Bottom">Add</Button>
-			<Button Name="cancelButton" DockPanel.Dock="Bottom">Cancel</Button>
+			<Button Command="{Binding AddCommand}">Add</Button>
+			<Button Click="OnCancelButtonClick">Cancel</Button>
 		</StackPanel>
 	</DockPanel>
 </Window>

@@ -13,14 +13,17 @@ namespace EditorPanelExample.ViewModels.Dialogs
     public class NewMaterialViewModel : ViewModelBase
     {
         private string _newMaterial;
+        private List<string> _invalidInputMessage;
 
         public NewMaterialViewModel()
         {
             AddCommand = ReactiveCommand.Create(() =>
             {
-                Debug.WriteLine("Add Command");
+                Debug.WriteLine($"Add Command: {NewMaterial}");
                 return NewMaterial;
             });
+
+            _invalidInputMessage = new List<string>();
         }
 
         public string NewMaterial
@@ -34,6 +37,12 @@ namespace EditorPanelExample.ViewModels.Dialogs
 
                 Debug.WriteLine(_newMaterial);
             }
+        }
+
+        public List<string> InvalidInputMessage
+        {
+            get => _invalidInputMessage;
+            set => this.RaiseAndSetIfChanged(ref _invalidInputMessage, value);
         }
 
         public ReactiveCommand<Unit, string> AddCommand { get; }
