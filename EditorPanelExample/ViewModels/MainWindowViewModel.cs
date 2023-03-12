@@ -120,9 +120,7 @@ namespace EditorPanelExample.ViewModels
 
             foreach (MyComponentBase component in ViewModels)
             {
-                SetRemoveComponentCommand(component);
-                SetMoveUpCommand(component);
-                SetMoveDownCommand(component);
+                SetContextMenuSelectedCommand(component);
             }
             // =====================
         }
@@ -163,53 +161,47 @@ namespace EditorPanelExample.ViewModels
             MyComponentBase newComponent = Activator.CreateInstance(viewModelType) as MyComponentBase;
             ViewModels.Add(newComponent);
 
-            SetRemoveComponentCommand(newComponent);
-            SetMoveUpCommand(newComponent);
-            SetMoveDownCommand(newComponent);
+            SetContextMenuSelectedCommand(newComponent);
 
             Debug.WriteLine($"Added {componentName}");
         }
         #endregion
 
-        private void SetRemoveComponentCommand(MyComponentBase component)
+        private void SetContextMenuSelectedCommand(MyComponentBase component)
         {
-            ReactiveCommand<MyComponentBase, Unit> removeComponentCommand =
-                ReactiveCommand.Create<MyComponentBase>(_ => ViewModels.Remove(component));
-            component.RemoveComponentCommand = removeComponentCommand;
-        }
-
-        private void SetMoveUpCommand(MyComponentBase component)
-        {
-            ReactiveCommand<MyComponentBase, Unit> moveUpCommand =
-                ReactiveCommand.Create<MyComponentBase>(_ =>
+            ReactiveCommand<string, Unit> contextMenuSelectedCommand =
+                ReactiveCommand.Create<string>(selected =>
                 {
                     int currentIndex = ViewModels.IndexOf(component);
-                    int previousIndex = currentIndex - 1;
-                    if (previousIndex >= 0)
-                    {
-                        MyComponentBase temp = ViewModels[previousIndex];
-                        ViewModels[previousIndex] = ViewModels[currentIndex];
-                        ViewModels[currentIndex] = temp;
-                    }
-                });
-            component.MoveUpCommand = moveUpCommand;
-        }
 
-        private void SetMoveDownCommand(MyComponentBase component)
-        {
-            ReactiveCommand<MyComponentBase, Unit> moveDownCommand =
-                ReactiveCommand.Create<MyComponentBase>(_ =>
-                {
-                    int currentIndex = ViewModels.IndexOf(component);
-                    int nextIndex = currentIndex + 1;
-                    if (nextIndex < ViewModels.Count)
+                    switch (selected)
                     {
-                        MyComponentBase temp = ViewModels[nextIndex];
-                        ViewModels[nextIndex] = ViewModels[currentIndex];
-                        ViewModels[currentIndex] = temp;
+                        case "remove component":
+                            ViewModels.Remove(component);
+                            break;
+                        case "move up":
+                            int previousIndex = currentIndex - 1;
+                            if (previousIndex >= 0)
+                            {
+                                MyComponentBase temp = ViewModels[previousIndex];
+                                ViewModels[previousIndex] = ViewModels[currentIndex];
+                                ViewModels[currentIndex] = temp;
+                            }
+                            break;
+                        case "move down":
+                            int nextIndex = currentIndex + 1;
+                            if (nextIndex < ViewModels.Count)
+                            {
+                                MyComponentBase temp = ViewModels[nextIndex];
+                                ViewModels[nextIndex] = ViewModels[currentIndex];
+                                ViewModels[currentIndex] = temp;
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 });
-            component.MoveDownCommand = moveDownCommand;
+            component.ContextMenuSelectedCommand = contextMenuSelectedCommand;
         }
 
         public ICommand InsertComponentCommand { get; set; }

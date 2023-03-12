@@ -53,9 +53,13 @@
 
 				  <Button.ContextMenu>
 					  <ContextMenu Name="componentContextMenu">
-						  <MenuItem Header="Remove Component" Command="{Binding RemoveComponentCommand}" />
-						  <MenuItem Header="Move Up" Command="{Binding MoveUpCommand}" />
-						  <MenuItem Header="Move Down" Command="{Binding MoveDownCommand}" />
+						  <MenuItem Header="Remove Component" 
+									Command="{Binding ContextMenuSelectedCommand}"
+									CommandParameter="remove component" />
+						  <MenuItem Header="Move Up" Command="{Binding ContextMenuSelectedCommand}"
+									CommandParameter="move up" />
+						  <MenuItem Header="Move Down" Command="{Binding ContextMenuSelectedCommand}"
+									CommandParameter="move down" />
 					  </ContextMenu>
 				  </Button.ContextMenu>
 			  </common:ComponentTitleButton>
