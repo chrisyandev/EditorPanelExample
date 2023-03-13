@@ -20,5 +20,8 @@
 	<x:String x:Key="toolTip_Animator_ApplyRootMotion">Use animation root motion to move the object</x:String>
 	<x:String x:Key="toolTip_Animator_UpdateMode">How often animator is updated</x:String>
 	<x:String x:Key="toolTip_Animator_CullingMode">What gets updated when object is culled</x:String>
+
+	<!-- Light Tooltips -->
+	<x:String x:Key="toolTip_Light_Title">This is a Light</x:String>
 	
 </ResourceDictionary>

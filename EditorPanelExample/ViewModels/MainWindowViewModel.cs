@@ -25,7 +25,8 @@ namespace EditorPanelExample.ViewModels
             ["Material"] = typeof(MaterialViewModel),
             ["Material List"] = typeof(MaterialListViewModel),
             ["Transform"] = typeof(TransformViewModel),
-            ["Animator"] = typeof(AnimatorViewModel)
+            ["Animator"] = typeof(AnimatorViewModel),
+            ["Light"] = typeof(LightViewModel)
         };
 
         public MainWindowViewModel()
@@ -119,6 +120,8 @@ namespace EditorPanelExample.ViewModels
             ViewModels.Add(new TransformViewModel(new Transform(24, 30, 55)));
 
             ViewModels.Add(new AnimatorViewModel(new Animator("KnightController.controller", "knightAvatar")));
+
+            ViewModels.Add(new LightViewModel());
 
             foreach (MyComponentBase component in ViewModels)
             {

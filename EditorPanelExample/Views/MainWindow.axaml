@@ -70,6 +70,19 @@
 				</StackPanel>
 			</Border>
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type vm:LightViewModel}">
+			<Border>
+				<StackPanel>
+					<templates:ComponentHeaderTemplate
+						MyInsertComponentCommand="{Binding $parent[Window].DataContext.InsertComponentCommand}"
+						MyGetDragDirectionCommand="{Binding $parent[Window].DataContext.GetDragDirectionCommand}"
+						MyTitle="{Binding Title}"
+						MyTooltip="{StaticResource toolTip_Light_Title}" />
+					<components:LightControl DataContext="{Binding}" DragDrop.AllowDrop="True" />
+				</StackPanel>
+			</Border>
+		</DataTemplate>
 	</Window.DataTemplates>
 	
 	<Window.Resources>
