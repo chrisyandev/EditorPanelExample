@@ -18,7 +18,7 @@ namespace EditorPanelExample.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
         }
 
-        public List<string> ContextMenuItems { get; } = new List<string>()
+        public List<string> ContextMenuItems { get; } = new()
         {
             "Remove Component",
             "Move Up",

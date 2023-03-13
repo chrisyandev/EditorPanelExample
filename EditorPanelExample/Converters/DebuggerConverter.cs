@@ -3,18 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
-namespace EditorPanelExample.Debugger
+namespace EditorPanelExample.Converters
 {
     public class DebuggerConverter : IValueConverter
     {
-        #region IValueConverter Members
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Set breakpoint here
             if (value is IEnumerable && !(value is string))
@@ -32,7 +30,7 @@ namespace EditorPanelExample.Debugger
             return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Set breakpoint here
             if (value is IEnumerable && !(value is string))
@@ -49,7 +47,5 @@ namespace EditorPanelExample.Debugger
 
             return value;
         }
-
-        #endregion
     }
 }

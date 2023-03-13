@@ -2,12 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:models="using:EditorPanelExample.Models"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
              x:Class="EditorPanelExample.Views.Components.LightControl">
 
 	<Border Classes="componentBorder">
 		<StackPanel IsVisible="{Binding !IsCollapsed}">
-			<Slider></Slider>
+			<ComboBox Items="{Binding Types}"
+					  SelectedItem="{Binding SelectedType}"
+					  HorizontalAlignment="Stretch" />
+			<Slider Value="{Binding ShadowStrength}"
+					Minimum="{Binding Source={x:Static models:Light.SHADOW_MIN_STRENGTH}}"
+					Maximum="{Binding Source={x:Static models:Light.SHADOW_MAX_STRENGTH}}"
+					TickFrequency="0.1" TickPlacement="Outside" />
+			<TextBox Text="{Binding ShadowStrength}" />
 		</StackPanel>
 	</Border>
 
