@@ -34,6 +34,7 @@ namespace EditorPanelExample.ViewModels
 
             AvailableComponents = new List<string>(_componentNameToTypeMap.Keys);
 
+            #region Creating Commands
             ReactiveCommand<Tuple<MyComponentBase, MyComponentBase>, Unit> insertComponentCommand
                 = ReactiveCommand.Create<Tuple<MyComponentBase, MyComponentBase>>(_ =>
                 {
@@ -100,9 +101,10 @@ namespace EditorPanelExample.ViewModels
                     }
                 });
             ExpandAllCommand = expandAllCommand;
+            #endregion
 
 
-            // ===== Mock Data =====
+            #region Mock Data
             ViewModels.Add(new MaterialViewModel(new Material("ExampleMaterial.mat")));
 
             MaterialList materialList = new MaterialList
@@ -122,7 +124,7 @@ namespace EditorPanelExample.ViewModels
             {
                 SetContextMenuSelectedCommand(component);
             }
-            // =====================
+            #endregion
         }
 
         public ObservableCollection<MyComponentBase> ViewModels { get; }

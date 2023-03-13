@@ -12,35 +12,18 @@ namespace EditorPanelExample.ViewModels
 {
     public class TransformViewModel : MyComponentBase
     {
-        private bool _isCollapsed;
-
         private Transform _transform;
 
         public TransformViewModel()
         {
             _transform = new Transform();
+            SetupComponent();
         }
 
         public TransformViewModel(Transform transform)
         {
             _transform = transform;
-        }
-
-        public string Title { get; } = "Transform";
-
-        public List<string> ContextMenuItems { get; } = new List<string>()
-        {
-            "Remove Component",
-            "Move Up",
-            "Move Down"
-        };
-
-        public override ICommand ContextMenuSelectedCommand { get; set; }
-
-        public override bool IsCollapsed
-        {
-            get => _isCollapsed;
-            set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
+            SetupComponent();
         }
 
         public float X
@@ -82,9 +65,9 @@ namespace EditorPanelExample.ViewModels
             }
         }
 
-        public override void ToggleCollapse()
+        private void SetupComponent()
         {
-            IsCollapsed = !IsCollapsed;
+            Title = "Transform";
         }
 
         public void ClearTransform()

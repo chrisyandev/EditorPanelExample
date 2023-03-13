@@ -12,35 +12,18 @@ namespace EditorPanelExample.ViewModels
 {
     public class MaterialViewModel : MyComponentBase
     {
-        private bool _isCollapsed;
-
         private Material _material;
 
         public MaterialViewModel()
         {
             _material = new Material();
+            SetupComponent();
         }
 
         public MaterialViewModel(Material material)
         {
             _material = material;
-        }
-
-        public string Title { get; } = "Material";
-
-        public List<string> ContextMenuItems { get; } = new List<string>()
-        {
-            "Remove Component",
-            "Move Up",
-            "Move Down"
-        };
-
-        public override ICommand ContextMenuSelectedCommand { get; set; }
-
-        public override bool IsCollapsed 
-        {
-            get => _isCollapsed;
-            set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
+            SetupComponent();
         }
 
         public string Material
@@ -56,14 +39,14 @@ namespace EditorPanelExample.ViewModels
             }
         }
 
+        private void SetupComponent()
+        {
+            Title = "Material";
+        }
+
         public void ClearMaterial()
         {
             Material = "";
-        }
-
-        public override void ToggleCollapse()
-        {
-            IsCollapsed = !IsCollapsed;
         }
     }
 }

@@ -14,8 +14,6 @@ namespace EditorPanelExample.ViewModels
 {
     public class AnimatorViewModel : MyComponentBase
     {
-        private bool _isCollapsed;
-
         private Animator _animator;
         private string _selectedUpdateMode;
         private string _selectedCullingMode;
@@ -23,30 +21,13 @@ namespace EditorPanelExample.ViewModels
         public AnimatorViewModel()
         {
             _animator = new Animator();
-            InitializeThisComponent();
+            SetupComponent();
         }
 
         public AnimatorViewModel(Animator animator)
         {
             _animator = animator;
-            InitializeThisComponent();
-        }
-
-        public string Title { get; } = "Animator";
-
-        public List<string> ContextMenuItems { get; } = new List<string>()
-        {
-            "Remove Component",
-            "Move Up",
-            "Move Down"
-        };
-
-        public override ICommand ContextMenuSelectedCommand { get; set; }
-
-        public override bool IsCollapsed
-        {
-            get => _isCollapsed;
-            set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
+            SetupComponent();
         }
 
         public string Controller
@@ -126,8 +107,10 @@ namespace EditorPanelExample.ViewModels
             }
         }
 
-        private void InitializeThisComponent()
+        private void SetupComponent()
         {
+            Title = "Animator";
+
             UpdateModes = new(
                 Enum.GetNames<UpdateMode>()
                 .Select(
@@ -141,11 +124,6 @@ namespace EditorPanelExample.ViewModels
                     name => string.Join(' ', new Regex(@"(?=[A-Z])").Split(name))
                 ));
             SelectedCullingMode = CullingModes.FirstOrDefault();
-        }
-
-        public override void ToggleCollapse()
-        {
-            IsCollapsed = !IsCollapsed;
         }
 
         public void ClearController()

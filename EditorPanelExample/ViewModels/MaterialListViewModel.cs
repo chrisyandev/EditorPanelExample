@@ -14,47 +14,29 @@ namespace EditorPanelExample.ViewModels
 {
     public class MaterialListViewModel : MyComponentBase
     {
-        private bool _isCollapsed;
-
-        public ObservableCollection<Material> Materials { get; set; }
-
         public MaterialListViewModel()
         {
             Materials = new ObservableCollection<Material>();
-            SetupNewMaterialDialog();
+            SetupComponent();
         }
 
         public MaterialListViewModel(MaterialList materialList)
         {
             Materials = new ObservableCollection<Material>(materialList);
-            SetupNewMaterialDialog();
+            SetupComponent();
         }
 
-        public string Title { get; } = "Material List";
+        public ObservableCollection<Material> Materials { get; set; }
 
-        public List<string> ContextMenuItems { get; } = new List<string>()
+        private void SetupComponent()
         {
-            "Remove Component",
-            "Move Up",
-            "Move Down"
-        };
-
-        public override ICommand ContextMenuSelectedCommand { get; set; }
-
-        public override bool IsCollapsed
-        {
-            get => _isCollapsed;
-            set => this.RaiseAndSetIfChanged(ref _isCollapsed, value);
+            Title = "Material List";
+            SetupNewMaterialDialog();
         }
 
         public void RemoveMaterial(Material material)
         {
             Materials.Remove(material);
-        }
-
-        public override void ToggleCollapse()
-        {
-            IsCollapsed = !IsCollapsed;
         }
 
         #region Add New Material
